@@ -13,7 +13,8 @@ socket.on("update", (msg) => {
 });
 
 socket.on("users", (user) => {
-	console.log(user);
+	var list = document.getElementById("main");
+	list.innerHTML = "";
 	user.forEach((user) => {
 		const listItem = document.createElement("li");
 
