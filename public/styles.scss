@@ -1,0 +1,21 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#main {
+	list-style-type: none;
+	li {
+		display: flex;
+		flex-direction: row;
+		text-align: center;
+		align-items: center;
+		p {
+			vertical-align: middle;
+			font-size: 40px;
+			font-weight: bold;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			margin-left: 10px;
+		}
+	}
+}

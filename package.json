@@ -1,14 +1,22 @@
 {
-  "name": "TalkUpdater",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Ben Newman <ben@bnewman.dev>",
-  "license": "MIT",
-  "dependencies": {
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+	"name": "TalkUpdater",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index",
+		"test": "nodemon index"
+	},
+	"author": "Ben Newman <ben@bnewman.dev>",
+	"license": "MIT",
+	"dependencies": {
+		"discord.js": "^12.5.1",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"fs": "^0.0.1-security",
+		"http": "^0.0.1-security",
+		"socket.io": "^3.1.2"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.7"
+	}
 }
