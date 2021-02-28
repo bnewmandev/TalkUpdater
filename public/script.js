@@ -43,6 +43,10 @@ socket.on("flip", () => {
 	}
 });
 
+socket.on("refresh", () => {
+	window.location.reload();
+});
+
 const test = () => {
 	const listItem = document.createElement("li");
 

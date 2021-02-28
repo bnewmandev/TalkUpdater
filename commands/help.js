@@ -2,13 +2,15 @@ module.exports = {
 	name: "help",
 	description: "displays command list",
 	execute(message, args) {
-		// message.channel.send(
-		// 	">help - displays this menu\n>connect - connects bot to voice channel\n>capture - opens web socket\n>pog - pog\n"
-		// );
-		message.channel.send(">help - displays this menu");
-		message.channel.send(">connect - connects bot to voice channel");
-		message.channel.send(">capture - updates connected users");
-		message.channel.send(">flip - flips the output");
-		message.channel.send(">pog - pogs");
+		const msg = `
+>help - displays this menu
+>connect - connects bot to voice channel
+>disconnect - disconnects bot from channel
+>capture - updates connected users
+>flip - flips the output
+>refresh - refreshes the webpage (debugging)
+>pog - pogs
+		`;
+		message.channel.send(msg);
 	},
 };
