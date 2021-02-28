@@ -18,6 +18,7 @@ module.exports = {
 		}
 		if (message.member.voice.channel) {
 			const users = message.member.voice.channel.members;
+			const ref = JSON.parse(fs.readFileSync("./ref.json"));
 			let publicData = [];
 			users.forEach((elem) => {
 				const avatar = elem.user.avatarURL();
