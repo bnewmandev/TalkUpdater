@@ -4,7 +4,14 @@ const fs = require("fs");
 module.exports = {
 	name: "connect",
 	description: "Connect to voice",
-	async execute(message, args, io) {
+	async execute(message, args, io, roleName) {
+		if (message.member.roles.cache.some((role) => role.name !== roleName)) {
+			return message.reply(
+				"You don't have permission to perform this command, you need the role '" +
+					roleName +
+					"'"
+			);
+		}
 		if (message.member.voice.channel) {
 			const connection = await message.member.voice.channel.join();
 		} else {

@@ -5,7 +5,7 @@ const express = require("express");
 const socket = require("socket.io");
 const app = express();
 
-const { prefix } = require("./config.json");
+const { prefix, roleName } = require("./config.json");
 
 require("dotenv").config();
 
@@ -35,6 +35,7 @@ for (const file of commandFiles) {
 
 client.once("ready", () => {
 	console.log("Ready!");
+
 	client.user
 		.setActivity(">help || pogging", { type: "LISTENING" })
 		.then((presence) =>
@@ -49,7 +50,7 @@ client.on("message", (message) => {
 	const command = args.shift().toLowerCase();
 
 	try {
-		client.commands.get(command).execute(message, args, io, client);
+		client.commands.get(command).execute(message, args, io, roleName);
 	} catch (error) {
 		message.reply("This command does not exist or was used incorrectly");
 	}
