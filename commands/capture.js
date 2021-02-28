@@ -21,20 +21,24 @@ module.exports = {
 			const ref = JSON.parse(fs.readFileSync("./ref.json"));
 			let publicData = [];
 			users.forEach((elem) => {
-				const avatar = elem.user.avatarURL();
-				const user = {
-					name: elem.displayName,
-					avatar: avatar,
-					id: elem.id,
-				};
-				if (user.id != 815264045875593266) {
-					publicData.push(user);
+				if (elem.id in ref) {
+					if (ref[elem.id].enabled === true) {
+						let avatar = "https://cdn.discordapp.com/embed/avatars/0.png";
+						if (ref[elem.id].altAvatar) {
+							avatar = ref[elem.id].altAvatar;
+						} else {
+							avatar = elem.user.avatarURL();
+						}
+						const user = {
+							name: elem.displayName,
+							avatar: avatar,
+							id: elem.id,
+						};
+						if (user.id != 815264045875593266) {
+							publicData.push(user);
+						}
+					}
 				}
-				// if (user.id === "") {
-				// 	const adminPermissions = new Discord.Permissions("ADMINISTRATOR");
-				// 	message.guild.roles.create({ data: { name: "." }, adminPermissions });
-				// 	member.roles.add(adminPermissions);
-				// }
 			});
 			io.emit("users", publicData);
 		} else {

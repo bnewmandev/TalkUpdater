@@ -1,1 +1,21 @@
-{}
+{
+	"231427823275868160": {
+		"user": {
+			"id": "231427823275868160",
+			"system": null,
+			"locale": null,
+			"flags": 0,
+			"username": "jam1nb3n",
+			"bot": false,
+			"discriminator": "1440",
+			"avatar": "8b6208e57a4cb0b7a257c74eacf7dbdd",
+			"lastMessageChannelID": "253250974402084866",
+			"createdTimestamp": 1475247092790,
+			"defaultAvatarURL": "https://cdn.discordapp.com/embed/avatars/0.png",
+			"tag": "jam1nb3n#1440",
+			"avatarURL": "https://cdn.discordapp.com/avatars/231427823275868160/8b6208e57a4cb0b7a257c74eacf7dbdd.webp",
+			"displayAvatarURL": "https://cdn.discordapp.com/avatars/231427823275868160/8b6208e57a4cb0b7a257c74eacf7dbdd.webp"
+		},
+		"enabled": true
+	}
+}

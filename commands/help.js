@@ -12,7 +12,8 @@ Setup:
 - give the Pogerator role to anyone who you want to use the bot
 - run the connect command while in a voice channel
 - run the capture command to setup the output with all users in the voice channel
-
+- each user who wants to be displayed should run >enableme
+\`\`\`
 >help - displays this message
 >init - sets up permissions
 >connect - connects bot to voice channel
@@ -20,21 +21,22 @@ Setup:
 >capture - updates connected users
 >flip - flips the output
 >refresh - refreshes the webpage (debugging)
+>avatar IMAGE_URL - sets avatar as image
+>avatar - sets avatar as discord logo
+>rmavatar - uses discord avatar
+>enableme - adds user to the overlay
+>disableme - removes user from the overlay (default)
 >pog - pogs
-
-You are free to use my code so long as the following message is included prominantly in the application:
+\`\`\`
 
 -------------------------------------
-Original Author: Ben Newman
+Author: Ben Newman
 Website: www.bnewman.dev
 Email: dc@bnewman.dev
 Github: www.github.com/jam1nb3n
 Discord: jam1nb3n#1440
-
-Designed for: www.twitch.tv/notbosch
 -------------------------------------
 
-Please enjoy and feel free to message me if you find any bugs
 --------------------------------------------------------------------------------------------------------------------
 		`;
 		message.channel.send(msg);

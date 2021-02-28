@@ -24,6 +24,11 @@
   margin-bottom: 10px;
 }
 
+#main li img {
+  height: 128px;
+  width: 128px;
+}
+
 #main li p {
   vertical-align: middle;
   font-size: 40px;
