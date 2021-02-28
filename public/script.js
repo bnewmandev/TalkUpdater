@@ -21,6 +21,7 @@ socket.on("users", (user) => {
 		const image = document.createElement("img");
 		image.setAttribute("src", user.avatar);
 		image.setAttribute("alt", user.name);
+		image.style.border = "5px solid black";
 		image.id = user.id;
 		listItem.appendChild(image);
 
