@@ -23,11 +23,17 @@ module.exports = {
 			users.forEach((elem) => {
 				if (elem.id in ref) {
 					if (ref[elem.id].enabled === true) {
+						const name = "";
 						let avatar = "https://cdn.discordapp.com/embed/avatars/0.png";
 						if (ref[elem.id].altAvatar) {
 							avatar = ref[elem.id].altAvatar;
 						} else {
 							avatar = elem.user.avatarURL();
+						}
+						if (ref[elem.id].nickname === "") {
+							name = elem.displayName;
+						} else {
+							name = ref[elem.id].nickname;
 						}
 						const user = {
 							name: elem.displayName,

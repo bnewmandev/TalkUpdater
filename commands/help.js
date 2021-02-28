@@ -13,6 +13,7 @@ Setup:
 - run the connect command while in a voice channel
 - run the capture command to setup the output with all users in the voice channel
 - each user who wants to be displayed should run >enableme
+
 \`\`\`
 >help - displays this message
 >init - sets up permissions
@@ -28,7 +29,6 @@ Setup:
 >disableme - removes user from the overlay (default)
 >pog - pogs
 \`\`\`
-
 -------------------------------------
 Author: Ben Newman
 Website: www.bnewman.dev
