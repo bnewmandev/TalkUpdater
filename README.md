@@ -65,3 +65,9 @@ Please enjoy and feel free to message me if you find any bugs
 
 - open http://localhost:PORT
 - Enjoy!
+
+---
+
+TODO:
+
+- add multi user support using passphrases
