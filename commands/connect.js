@@ -17,6 +17,13 @@ module.exports = {
 		}
 		if (message.member.voice.channel) {
 			const connection = await message.member.voice.channel.join();
+			if (process.env.IP) {
+				return message.channel.send(
+					"Server live on " +
+						process.env.IP +
+						" please open page then run capture command"
+				);
+			}
 		} else {
 			return message.reply(
 				"Please join a voice call before using this command"

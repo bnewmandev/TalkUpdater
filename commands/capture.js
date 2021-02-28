@@ -31,9 +31,6 @@ module.exports = {
 				}
 			});
 			io.emit("users", publicData);
-			if (process.env.IP) {
-				return message.channel.send("Server live on " + process.env.IP);
-			}
 		} else {
 			return message.reply(
 				"Please join a voice call before using this command"
