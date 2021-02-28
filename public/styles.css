@@ -4,6 +4,7 @@
 }
 
 #main {
+  width: 100%;
   list-style-type: none;
 }
 
@@ -19,6 +20,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  float: left;
   margin-bottom: 10px;
 }
 
@@ -30,5 +32,9 @@
   margin-left: 10px;
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.right #main li {
+  float: right;
 }
 /*# sourceMappingURL=styles.css.map */

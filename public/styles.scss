@@ -4,12 +4,14 @@
 }
 
 #main {
+	width: 100%;
 	list-style-type: none;
 	li {
 		display: flex;
 		flex-direction: row;
 		text-align: center;
 		align-items: center;
+		float: left;
 		p {
 			vertical-align: middle;
 			font-size: 40px;
@@ -21,5 +23,13 @@
 				1px 1px 0 #000;
 		}
 		margin-bottom: 10px;
+	}
+}
+
+.right {
+	#main {
+		li {
+			float: right;
+		}
 	}
 }

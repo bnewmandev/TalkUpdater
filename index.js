@@ -35,6 +35,12 @@ for (const file of commandFiles) {
 
 client.once("ready", () => {
 	console.log("Ready!");
+	client.user
+		.setActivity(">help || pogging", { type: "LISTENING" })
+		.then((presence) =>
+			console.log(`Activity set to ${presence.activities[0].name}`)
+		)
+		.catch(console.error);
 });
 
 client.on("message", (message) => {
