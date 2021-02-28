@@ -7,6 +7,12 @@ module.exports = {
 This bot is designed to get voice activity data from a voice channel and pipe it to a webserver.
 In practical terms this allows for a stream to add a browser source to show who is speaking.
 
+Setup:
+- run the init command (need permission to edit roles) only needs to be done once
+- give the Pogerator role to anyone who you want to use the bot
+- run the connect command while in a voice channel
+- run the capture command to setup the output with all users in the voice channel
+
 >help - displays this message
 >init - sets up permissions
 >connect - connects bot to voice channel
