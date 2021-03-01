@@ -27,6 +27,8 @@ Setup:
 >rmavatar - uses discord avatar
 >enableme - adds user to the overlay
 >disableme - removes user from the overlay (default)
+>nick - remove nickname
+>nick NICKNAME - sets nickname
 >pog - pogs
 \`\`\`
 -------------------------------------
