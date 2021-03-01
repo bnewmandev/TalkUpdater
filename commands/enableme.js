@@ -1,21 +1,39 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const mongoose = require("mongoose");
 
 module.exports = {
 	name: "enableme",
 	description: "enableme",
-	async execute(message, args, io) {
-		const user = message.member.user;
-		const data = JSON.parse(fs.readFileSync("./ref.json"));
-		if (user.id in data) {
-			data[user.id].enabled = true;
+	async execute(message, args, globalArgs) {
+		const ServerModel = globalArgs.ServerModel;
+		const UserModel = globalArgs.UserModel;
+		const userFULL = message.member.user;
+
+		console.log(ServerModel);
+		const server = await ServerModel.findOne({ guildID: message.guild.id });
+		if (!server) return message.reply("please run >init first");
+		const user = await UserModel.findOneAndUpdate(
+			{
+				guildID: message.guild.id,
+				userID: userFULL.id,
+			},
+			{ enabled: true }
+		);
+		if (user) {
+			return message.reply("Ok, I will add you to the overlay");
 		} else {
-			data[user.id] = {
-				user: user,
+			const newUser = await new UserModel({
+				userID: userFULL.id,
+				guildID: message.guild.id,
 				enabled: true,
-			};
+				avatarState: 0,
+				avatarURL: null,
+			});
+			newUser.save((err) => {
+				if (err) return console.log(err);
+			});
+			return message.reply("Ok, I will add you to the overlay");
 		}
-		fs.writeFileSync("./ref.json", JSON.stringify(data));
-		return message.reply("Ok, I will add you to the overlay");
 	},
 };

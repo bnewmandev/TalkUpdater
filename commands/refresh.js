@@ -4,10 +4,10 @@ const fs = require("fs");
 module.exports = {
 	name: "refresh",
 	description: "refreshes the webpage",
-	async execute(message, args, io, roleName) {
-		let l1 = message.member.roles.cache.some(
-			(role) => role.name === "Pogerator"
-		);
+	async execute(message, args, globalArgs) {
+		const roleName = globalArgs.roleName;
+		const io = globalArgs.io;
+		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
 		if (l1 === undefined) {
 			return message.reply(
 				"You don't have permission to perform this command, you need the role '" +
@@ -15,7 +15,7 @@ module.exports = {
 					"'"
 			);
 		}
-		io.emit("refresh", { refresh: true });
+		io.emit("refresh", { refresh: true, gid: message.member.guild.id });
 		return message.channel.send("Refreshed webpage");
 	},
 };

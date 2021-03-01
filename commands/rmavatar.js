@@ -4,19 +4,20 @@ const fs = require("fs");
 module.exports = {
 	name: "rmavatar",
 	description: "rmavatar",
-	async execute(message, args, io) {
-		const user = message.member.user;
-		const data = JSON.parse(fs.readFileSync("./ref.json"));
-		if (user.id in data) {
-			data[user.id].altAvatar = false;
-		} else {
-			data[user.id] = {
-				user: user,
-				enabled: false,
-				altAvatar: false,
-			};
-		}
-		fs.writeFileSync("./ref.json", JSON.stringify(data));
-		message.reply("Your discord avatar is now being used");
+	async execute(message, args, globalArgs) {
+		const UserModel = globalArgs.UserModel;
+		const userFULL = message.member.user;
+		const user = await UserModel.findOneAndUpdate(
+			{
+				guildID: message.guild.id,
+				userID: userFULL.id,
+			},
+			{ avatarState: 0 }
+		);
+		if (!user)
+			return message.reply(
+				"Please run the enableme and the init command first"
+			);
+		message.reply("Your avatar has been reset to default");
 	},
 };

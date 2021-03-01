@@ -1,13 +1,28 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-
+const mongoose = require("mongoose");
+const uuid = require("uuid");
 const express = require("express");
 const socket = require("socket.io");
 const app = express();
 
+const ServerModel = require("./database/models/Server");
+const UserModel = require("./database/models/User");
+
 const { prefix, roleName } = require("./config.json");
 
 require("dotenv").config();
+
+mongoose.connect(process.env.CON_STR, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+});
+
+const db = mongoose.connection;
+db.once("open", () => {
+	console.log("Connected to database");
+});
 
 app.use(express.static("public"));
 
@@ -16,6 +31,13 @@ const server = app.listen(process.env.PORT, () => {
 });
 
 const io = socket(server);
+
+const globalArgs = {
+	io: io,
+	ServerModel: ServerModel,
+	UserModel: UserModel,
+	roleName: roleName,
+};
 
 io.on("connection", (socket) => {
 	console.log("Socket opened");
@@ -50,7 +72,7 @@ client.on("message", (message) => {
 	const command = args.shift().toLowerCase();
 
 	try {
-		client.commands.get(command).execute(message, args, io, roleName);
+		client.commands.get(command).execute(message, args, globalArgs);
 	} catch (error) {
 		message.reply("This command does not exist or was used incorrectly");
 	}
@@ -59,10 +81,18 @@ client.on("guildMemberSpeaking", (member, speaking) => {
 	if (member.user.bot) return;
 	if (speaking.bitfield) {
 		// console.log(member.user.username + " Has started speaking");
-		io.emit("update", { speaking: true, id: member.user.id });
+		io.emit("update", {
+			speaking: true,
+			id: member.user.id,
+			guid: member.guild.id,
+		});
 	} else {
 		// console.log(member.user.username + " Has stopped speaking");
-		io.emit("update", { speaking: false, id: member.user.id });
+		io.emit("update", {
+			speaking: false,
+			id: member.user.id,
+			guid: member.guild.id,
+		});
 	}
 });
 
