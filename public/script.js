@@ -1,18 +1,30 @@
 var socket = io.connect();
+let online = null;
 
 socket.on("update", (msg) => {
-	console.log(msg);
-	if (msg.speaking === true) {
-		console.log("speaking");
-		const user = document.getElementById(msg.id);
-		user.style.border = "5px solid red";
-	} else {
-		const user = document.getElementById(msg.id);
-		user.style.border = "5px solid black";
+	if (msg.guid === online) {
+		if (msg.speaking === true) {
+			console.log(msg.id + " speaking");
+			const user = document.getElementById(msg.id);
+			user.style.border = "5px solid red";
+		} else {
+			const user = document.getElementById(msg.id);
+			user.style.border = "5px solid black";
+			console.log(msg.id + " not speaking");
+		}
 	}
 });
 
-socket.on("users", (user) => {
+socket.on("users", (data) => {
+	const user = data.data;
+	const gid = data.gid;
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const param1 = urlParams.get("id");
+
+	if (gid !== param1) return;
+	online = data.guid;
+	console.log(user);
 	var list = document.getElementById("mainL");
 	list.innerHTML = "";
 	user.forEach((user) => {
@@ -44,8 +56,10 @@ socket.on("flip", () => {
 	}
 });
 
-socket.on("refresh", () => {
-	window.location.reload();
+socket.on("refresh", (data) => {
+	if (data.gid === online) {
+		window.location.reload();
+	}
 });
 
 const test = () => {

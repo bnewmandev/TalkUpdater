@@ -1,28 +1,39 @@
 const Discord = require("discord.js");
-const e = require("express");
 const fs = require("fs");
 
 module.exports = {
 	name: "avatar",
 	description: "avatar",
-	async execute(message, args, io) {
-		const user = message.member.user;
-		const data = JSON.parse(fs.readFileSync("./ref.json"));
-		if (user.id in data) {
-			if (args.length !== 0) {
-				data[user.id].altAvatar = args[0];
-			} else {
-				data[user.id].altAvatar =
-					"https://cdn.discordapp.com/embed/avatars/0.png";
-			}
-		} else {
-			data[user.id] = {
-				user: user,
-				enabled: false,
-				altAvatar: args[0],
-			};
+	async execute(message, args, globalArgs) {
+		const UserModel = globalArgs.UserModel;
+		const userFULL = message.member.user;
+		const CHECK = await UserModel.findOne({
+			guildID: message.guild.id,
+			userID: userFULL.id,
+		});
+		if (!CHECK) {
+			return message.reply(
+				"Please run the enableme and the init command first"
+			);
 		}
-		fs.writeFileSync("./ref.json", JSON.stringify(data));
-		message.reply("Your new avatar has been set");
+		if (args.length === 1) {
+			const user = await UserModel.findOneAndUpdate(
+				{
+					guildID: message.guild.id,
+					userID: userFULL.id,
+				},
+				{ avatarState: 1, avatarURL: args[0] }
+			);
+			message.reply(`Your avatar is ${args[0]}`);
+		} else {
+			const user = await UserModel.findOneAndUpdate(
+				{
+					guildID: message.guild.id,
+					userID: userFULL.id,
+				},
+				{ avatarState: 2 }
+			);
+			message.reply("Your avatar has been set as the discord avatar");
+		}
 	},
 };
