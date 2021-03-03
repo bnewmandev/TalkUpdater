@@ -12,7 +12,8 @@ module.exports = {
 
 		console.log(ServerModel);
 		const server = await ServerModel.findOne({ guildID: message.guild.id });
-		if (!server) return message.reply("please run >init first");
+		if (!server)
+			return message.reply(`please run ${globalArgs.prefix}init first`);
 		const user = await UserModel.findOneAndUpdate(
 			{
 				guildID: message.guild.id,

@@ -19,11 +19,6 @@ mongoose.connect(process.env.CON_STR, {
 	useFindAndModify: false,
 });
 
-const db = mongoose.connection;
-db.once("open", () => {
-	console.log("Connected to database");
-});
-
 app.use(express.static("public"));
 
 const server = app.listen(process.env.PORT, () => {
@@ -34,6 +29,7 @@ const io = socket(server);
 
 const globalArgs = {
 	io: io,
+	prefix: prefix,
 	ServerModel: ServerModel,
 	UserModel: UserModel,
 	roleName: roleName,
@@ -59,7 +55,7 @@ client.once("ready", () => {
 	console.log("Ready!");
 
 	client.user
-		.setActivity(">help || pogging", { type: "LISTENING" })
+		.setActivity(`${prefix}help || pogging`, { type: "LISTENING" })
 		.then((presence) =>
 			console.log(`Activity set to ${presence.activities[0].name}`)
 		)

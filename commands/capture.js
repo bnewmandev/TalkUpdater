@@ -39,6 +39,9 @@ module.exports = {
 					avatarU = "https://cdn.discordapp.com/embed/avatars/0.png";
 				}
 				let nName = elem.user.username;
+				if (user.nickname) {
+					nName = user.nickname;
+				}
 				publicData.push({
 					avatar: avatarU,
 					name: nName,

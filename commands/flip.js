@@ -5,9 +5,7 @@ module.exports = {
 	name: "flip",
 	description: "flips socket output side",
 	async execute(message, args, io, roleName) {
-		let l1 = message.member.roles.cache.some(
-			(role) => role.name === "Pogerator"
-		);
+		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
 		if (l1 === undefined) {
 			return message.reply(
 				"You don't have permission to perform this command, you need the role '" +

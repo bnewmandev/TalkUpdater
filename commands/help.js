@@ -1,7 +1,7 @@
 module.exports = {
 	name: "help",
 	description: "displays command list",
-	execute(message, args) {
+	execute(message, args, globalArgs) {
 		const msg = `
 --------------------------------------------------------------------------------------------------------------------
 This bot is designed to get voice activity data from a voice channel and pipe it to a webserver.
@@ -9,27 +9,27 @@ In practical terms this allows for a stream to add a browser source to show who 
 
 Setup:
 - run the init command (need permission to edit roles) only needs to be done once
-- give the Pogerator role to anyone who you want to use the bot
+- give the ${globalArgs.roleName} role to anyone who you want to use the bot
 - run the connect command while in a voice channel
 - run the capture command to setup the output with all users in the voice channel
-- each user who wants to be displayed should run >enableme
+- each user who wants to be displayed should run ${globalArgs.prefix}enableme
 
 \`\`\`
->help - displays this message
->init - sets up permissions
->connect - connects bot to voice channel
->disconnect - disconnects bot from channel
->capture - updates connected users
->flip - flips the output
->refresh - refreshes the webpage (debugging)
->avatar IMAGE_URL - sets avatar as image
->avatar - sets avatar as discord logo
->rmavatar - uses discord avatar
->enableme - adds user to the overlay
->disableme - removes user from the overlay (default)
->nick - remove nickname
->nick NICKNAME - sets nickname
->pog - pogs
+${globalArgs.prefix}help - displays this message
+${globalArgs.prefix}init - sets up permissions
+${globalArgs.prefix}connect - connects bot to voice channel
+${globalArgs.prefix}disconnect - disconnects bot from channel
+${globalArgs.prefix}capture - updates connected users
+${globalArgs.prefix}flip - flips the output
+${globalArgs.prefix}refresh - refreshes the webpage (debugging)
+${globalArgs.prefix}avatar IMAGE_URL - sets avatar as image
+${globalArgs.prefix}avatar - sets avatar as discord logo
+${globalArgs.prefix}rmavatar - uses discord avatar
+${globalArgs.prefix}enableme - adds user to the overlay
+${globalArgs.prefix}disableme - removes user from the overlay (default)
+${globalArgs.prefix}nick - remove nickname
+${globalArgs.prefix}nick NICKNAME - sets nickname
+${globalArgs.prefix}pog - pogs
 \`\`\`
 -------------------------------------
 Author: Ben Newman

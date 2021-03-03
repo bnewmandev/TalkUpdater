@@ -16,7 +16,7 @@ module.exports = {
 		);
 		if (!user)
 			return message.reply(
-				"Please run the enableme and the init command first"
+				`Please run the ${globalArgs.prefix}enableme and ${globalArgs.prefix}the init commands first`
 			);
 		message.reply("Your avatar has been reset to default");
 	},

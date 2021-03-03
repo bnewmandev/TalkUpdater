@@ -1,24 +1,36 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const { nextTick } = require("process");
+const { findOneAndUpdate, findOne } = require("../database/models/User");
 
 module.exports = {
-	name: "about",
-	description: "about",
-	async execute(message, args, io) {
-		const user = message.member.user;
-		const data = JSON.parse(fs.readFileSync("./ref.json"));
-		let nick = "";
-		if (args.length === 1) {
-			nick = args[0];
-		}
-		if (user.id in data) {
-			data[user.id].nickname = nick;
+	name: "nick",
+	description: "nickname",
+	async execute(message, args, globalArgs) {
+		const UserModel = globalArgs.UserModel;
+		const user = await UserModel.findOne({
+			userID: message.member.user.id,
+			guildID: message.guild.id,
+		});
+		if (!user) return message.reply("Please run enableme command");
+		if (args.length !== 1) {
+			const userTwo = await UserModel.findOneAndUpdate(
+				{
+					userID: message.member.user.id,
+					guildID: message.guild.id,
+				},
+				{ nickname: null }
+			);
+			return message.reply("Nickname removed");
 		} else {
-			data[user.id] = {
-				user: user,
-				enabled: false,
-				nickname: nick,
-			};
+			const userTwo = await UserModel.findOneAndUpdate(
+				{
+					userID: message.member.user.id,
+					guildID: message.guild.id,
+				},
+				{ nickname: args[0] }
+			);
+			return message.reply("New nickname: " + args[0]);
 		}
 	},
 };
