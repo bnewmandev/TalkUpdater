@@ -12,6 +12,8 @@ socket.on("update", (msg) => {
 				if (speakOnly) {
 					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "flex";
+				} else {
+					li.style.display = "flex";
 				}
 				user.style.border = "5px solid red";
 			} else {
@@ -19,6 +21,8 @@ socket.on("update", (msg) => {
 				if (speakOnly) {
 					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "none";
+				} else {
+					li.style.display = "flex";
 				}
 				user.style.border = "5px solid black";
 				console.log(msg.id + " not speaking");
