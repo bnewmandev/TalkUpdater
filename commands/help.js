@@ -29,7 +29,6 @@ ${globalArgs.prefix}enableme - adds user to the overlay
 ${globalArgs.prefix}disableme - removes user from the overlay (default)
 ${globalArgs.prefix}nick - remove nickname
 ${globalArgs.prefix}nick NICKNAME - sets nickname
-${globalArgs.prefix}pog - pogs
 \`\`\`
 -------------------------------------
 Author: Ben Newman
@@ -38,7 +37,8 @@ Email: dc@bnewman.dev
 Github: www.github.com/jam1nb3n
 Discord: jam1nb3n#1440
 -------------------------------------
-
+Please feel free to get in touch if there are any feature you would like added
+Please consider donating at https://www.paypal.me/bnewmandev
 --------------------------------------------------------------------------------------------------------------------
 		`;
 		message.channel.send(msg);
