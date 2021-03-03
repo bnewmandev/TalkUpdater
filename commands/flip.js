@@ -4,7 +4,9 @@ const fs = require("fs");
 module.exports = {
 	name: "flip",
 	description: "flips socket output side",
-	async execute(message, args, io, roleName) {
+	async execute(message, args, globalArgs) {
+		const roleName = globalArgs.roleName;
+		const io = globalArgs.io;
 		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
 		if (l1 === undefined) {
 			return message.reply(
