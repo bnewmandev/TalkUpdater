@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const uuid = require("uuid");
 const express = require("express");
 const socket = require("socket.io");
+const { createCanvas } = require("canvas");
+
 const app = express();
 
 const ServerModel = require("./database/models/Server");

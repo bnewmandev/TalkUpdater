@@ -8,6 +8,8 @@ const schema = mongoose.Schema({
 	isPremium: Boolean,
 	joinedOn: Number,
 	permanantCode: String,
+	avatarCircle: Boolean,
+	speakOnly: Boolean,
 });
 
 module.exports = mongoose.model("ServerModel", schema);

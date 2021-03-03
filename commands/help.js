@@ -29,6 +29,9 @@ ${globalArgs.prefix}enableme - adds user to the overlay
 ${globalArgs.prefix}disableme - removes user from the overlay (default)
 ${globalArgs.prefix}nick - remove nickname
 ${globalArgs.prefix}nick NICKNAME - sets nickname
+${globalArgs.prefix}avatarshape - toggles between circle and square avatar
+${globalArgs.prefix}link - show the connection link
+${globalArgs.prefix}speakonly - toggles between displaying only when speaking and always displaying
 \`\`\`
 -------------------------------------
 Author: Ben Newman
