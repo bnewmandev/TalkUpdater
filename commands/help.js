@@ -16,6 +16,7 @@ Setup:
 
 \`\`\`
 ${globalArgs.prefix}help - displays this message
+${globalArgs.prefix}source - links the source code
 ${globalArgs.prefix}init - sets up permissions
 ${globalArgs.prefix}connect - connects bot to voice channel
 ${globalArgs.prefix}disconnect - disconnects bot from channel
