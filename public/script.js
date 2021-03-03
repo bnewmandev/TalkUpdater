@@ -13,6 +13,7 @@ socket.on("update", (msg) => {
 					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "flex";
 				} else {
+					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "flex";
 				}
 				user.style.border = "5px solid red";
@@ -22,6 +23,7 @@ socket.on("update", (msg) => {
 					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "none";
 				} else {
+					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "flex";
 				}
 				user.style.border = "5px solid black";
