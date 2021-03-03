@@ -7,6 +7,7 @@ const schema = mongoose.Schema({
 	avatarState: Number,
 	avatarURL: String,
 	nickname: String,
+	nameCol: String,
 });
 
 module.exports = mongoose.model("UserModel", schema);

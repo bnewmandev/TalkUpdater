@@ -6,16 +6,20 @@
 #main {
   width: 100%;
   list-style-type: none;
-}
-
-#main li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#main li {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   text-align: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -35,8 +39,7 @@
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-left: 10px;
-  color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  -webkit-text-stroke: 1.5px #000000;
 }
 
 .right #main li {

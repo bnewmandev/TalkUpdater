@@ -42,10 +42,15 @@ module.exports = {
 				if (user.nickname) {
 					nName = user.nickname;
 				}
+				let nCol = user.nameCol;
+				if (!user.nameCol) {
+					nCol = "#ffffff";
+				}
 				publicData.push({
 					avatar: avatarU,
 					name: nName,
 					id: elem.user.id,
+					nameCol: nCol,
 				});
 			});
 			const server = await ServerModel.findOne({ guildID: message.guild.id });

@@ -39,6 +39,7 @@ socket.on("users", (data) => {
 
 		const name = document.createElement("p");
 		name.innerText = user.name;
+		name.style.color = user.nameCol;
 		listItem.appendChild(name);
 
 		var list = document.getElementById("mainL");
