@@ -58,6 +58,8 @@ module.exports = {
 				data: publicData,
 				gid: server.permanantCode,
 				guid: server.guildID,
+				circle: server.avatarCircle,
+				speakOnly: server.speakOnly,
 			};
 			io.emit("users", sendData);
 		} else {

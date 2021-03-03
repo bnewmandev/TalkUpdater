@@ -9,6 +9,7 @@ const schema = mongoose.Schema({
 	joinedOn: Number,
 	permanantCode: String,
 	avatarCircle: Boolean,
+	speakOnly: Boolean,
 });
 
 module.exports = mongoose.model("ServerModel", schema);

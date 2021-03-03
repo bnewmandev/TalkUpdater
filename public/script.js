@@ -1,21 +1,36 @@
 var socket = io.connect();
 let online = null;
+let userList = [];
+let speakOnly = false;
 
 socket.on("update", (msg) => {
 	if (msg.guid === online) {
-		if (msg.speaking === true) {
-			console.log(msg.id + " speaking");
-			const user = document.getElementById(msg.id);
-			user.style.border = "5px solid red";
-		} else {
-			const user = document.getElementById(msg.id);
-			user.style.border = "5px solid black";
-			console.log(msg.id + " not speaking");
+		if (userList.includes(msg.id)) {
+			if (msg.speaking === true) {
+				console.log(msg.id + " speaking");
+				const user = document.getElementById(msg.id);
+				if (speakOnly) {
+					const li = document.getElementById("LI" + msg.id);
+					li.style.display = "flex";
+				}
+				user.style.border = "5px solid red";
+			} else {
+				const user = document.getElementById(msg.id);
+				if (speakOnly) {
+					const li = document.getElementById("LI" + msg.id);
+					li.style.display = "none";
+				}
+				user.style.border = "5px solid black";
+				console.log(msg.id + " not speaking");
+			}
 		}
 	}
 });
 
 socket.on("users", (data) => {
+	if (data.speakOnly) {
+		speakOnly = true;
+	}
 	const user = data.data;
 	const gid = data.gid;
 	const queryString = window.location.search;
@@ -27,14 +42,24 @@ socket.on("users", (data) => {
 	console.log(user);
 	var list = document.getElementById("mainL");
 	list.innerHTML = "";
-	user.forEach((user) => {
-		const listItem = document.createElement("li");
 
+	user.forEach((user) => {
+		userList.push(user.id);
+		const listItem = document.createElement("li");
 		const image = document.createElement("img");
+		if (speakOnly) {
+			listItem.style.display = "none";
+		}
 		image.setAttribute("src", user.avatar);
 		image.setAttribute("alt", user.name);
 		image.style.border = "5px solid black";
+		if (data.circle) {
+			image.style.borderRadius = "50%";
+		} else {
+			image.style.borderRadius = "0";
+		}
 		image.id = user.id;
+		listItem.id = "LI" + user.id;
 		listItem.appendChild(image);
 
 		const name = document.createElement("p");
@@ -48,7 +73,7 @@ socket.on("users", (data) => {
 });
 
 socket.on("flip", () => {
-	console.log("yeet");
+	console.log("flipped");
 	const main = document.getElementById("mainL");
 	if (main.style.float == "right") {
 		main.style.float = "left";
