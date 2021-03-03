@@ -20,7 +20,7 @@ module.exports = {
 		if (!l2) {
 			return message.reply(`please run ${globalArgs.prefix}init first`);
 		}
-		if (l2.avatarCircle) {
+		if (l2.speakOnly) {
 			const server = await ServerModel.findOneAndUpdate(
 				{ guildID: message.guild.id },
 				{ speakOnly: false }
