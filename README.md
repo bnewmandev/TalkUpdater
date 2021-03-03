@@ -14,8 +14,8 @@ Setup:
 ```none
 >help - displays this message
 >init - sets up permissions
->connect - connects bot to voice channel
->disconnect - disconnects bot from channel
+>connect (con) - connects bot to voice channel
+>disconnect (dc) - disconnects bot from channel
 >capture - updates connected users
 >flip - flips the output
 >refresh - refreshes the webpage (debugging)

@@ -18,8 +18,8 @@ Setup:
 ${globalArgs.prefix}help - displays this message
 ${globalArgs.prefix}source - links the source code
 ${globalArgs.prefix}init - sets up permissions
-${globalArgs.prefix}connect - connects bot to voice channel
-${globalArgs.prefix}disconnect - disconnects bot from channel
+${globalArgs.prefix}connect (con) - connects bot to voice channel
+${globalArgs.prefix}disconnect (dc) - disconnects bot from channel
 ${globalArgs.prefix}capture - updates connected users
 ${globalArgs.prefix}flip - flips the output
 ${globalArgs.prefix}refresh - refreshes the webpage (debugging)
