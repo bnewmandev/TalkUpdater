@@ -46,11 +46,16 @@ module.exports = {
 				if (!user.nameCol) {
 					nCol = "#ffffff";
 				}
+				let aCol = user.activeCol;
+				if (!aCol) {
+					aCol = "#ff0000";
+				}
 				publicData.push({
 					avatar: avatarU,
 					name: nName,
 					id: elem.user.id,
 					nameCol: nCol,
+					activeCol: aCol,
 				});
 			});
 			const server = await ServerModel.findOne({ guildID: message.guild.id });

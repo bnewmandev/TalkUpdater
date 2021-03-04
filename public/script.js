@@ -2,6 +2,7 @@ var socket = io.connect();
 let online = null;
 let userList = [];
 let speakOnly = false;
+let usrCol = {};
 
 socket.on("update", (msg) => {
 	if (msg.guid === online) {
@@ -16,7 +17,7 @@ socket.on("update", (msg) => {
 					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "flex";
 				}
-				user.style.border = "5px solid red";
+				user.style.border = `5px solid ${usrCol[msg.id]}`;
 			} else {
 				const user = document.getElementById(msg.id);
 				if (speakOnly) {
@@ -51,6 +52,7 @@ socket.on("users", (data) => {
 
 	user.forEach((user) => {
 		userList.push(user.id);
+		usrCol[user.id] = user.activeCol;
 		const listItem = document.createElement("li");
 		const image = document.createElement("img");
 		if (speakOnly) {
