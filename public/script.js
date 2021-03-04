@@ -27,7 +27,7 @@ socket.on("update", (msg) => {
 					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "flex";
 				}
-				user.style.border = "5px solid black";
+				user.style.border = "8px solid black";
 				console.log(msg.id + " not speaking");
 			}
 		}
