@@ -34,6 +34,9 @@
 }
 
 #main li p {
+  text-align: left;
+  word-wrap: break-word;
+  width: 20%;
   vertical-align: middle;
   font-size: 40px;
   font-weight: bold;
