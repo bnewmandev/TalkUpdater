@@ -17,7 +17,7 @@ socket.on("update", (msg) => {
 					const li = document.getElementById("LI" + msg.id);
 					li.style.display = "flex";
 				}
-				user.style.border = `5px solid ${usrCol[msg.id]}`;
+				user.style.border = `8px solid ${usrCol[msg.id]}`;
 			} else {
 				const user = document.getElementById(msg.id);
 				if (speakOnly) {
