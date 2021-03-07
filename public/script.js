@@ -60,7 +60,7 @@ socket.on("users", (data) => {
 		}
 		image.setAttribute("src", user.avatar);
 		image.setAttribute("alt", user.name);
-		image.style.border = "5px solid black";
+		image.style.border = "8px solid black";
 		if (data.circle) {
 			image.style.borderRadius = "50%";
 		} else {

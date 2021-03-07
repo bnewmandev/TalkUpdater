@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const uuid = require("uuid");
 const express = require("express");
 const socket = require("socket.io");
+const events = require("events");
 const { createCanvas } = require("canvas");
+const ProgressBar = require("./lib/ProgressBar");
 
 const app = express();
 
@@ -29,6 +31,9 @@ const server = app.listen(process.env.PORT, () => {
 
 const io = socket(server);
 
+const client = new Discord.Client();
+client.commands = new Discord.Collection();
+
 const globalArgs = {
 	io: io,
 	prefix: prefix,
@@ -41,9 +46,6 @@ io.on("connection", (socket) => {
 	console.log("Socket opened");
 });
 
-const client = new Discord.Client();
-client.commands = new Discord.Collection();
-
 const commandFiles = fs
 	.readdirSync("./commands")
 	.filter((file) => file.endsWith(".js"));
@@ -55,7 +57,6 @@ for (const file of commandFiles) {
 
 client.once("ready", () => {
 	console.log("Ready!");
-
 	client.user
 		.setActivity(`${prefix}help || pogging`, { type: "LISTENING" })
 		.then((presence) =>
@@ -64,7 +65,12 @@ client.once("ready", () => {
 		.catch(console.error);
 });
 
-client.on("message", (message) => {
+client.on("message", async (message) => {
+	if (message.content === "yeetery") {
+		const role = message.guild.roles.cache.get("619209647831646259");
+
+		console.log(role.permissions.toArray());
+	}
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
