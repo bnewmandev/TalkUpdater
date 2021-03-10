@@ -106,6 +106,11 @@ socket.on("TEXTSIZE", (data) => {
 	}
 });
 
+socket.on("NOWPLAYING", (data) => {
+	const elem = document.getElementById("nowPlay");
+	elem.innerText = data.sng;
+});
+
 const test = () => {
 	const listItem = document.createElement("li");
 

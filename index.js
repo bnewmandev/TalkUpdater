@@ -8,6 +8,7 @@ const events = require("events");
 const { createCanvas } = require("canvas");
 const ProgressBar = require("./lib/ProgressBar");
 const isPremium = require("./lib/isPremium");
+let currentlyPlaying = "";
 
 const app = express();
 
@@ -72,6 +73,18 @@ client.on("message", async (message) => {
 
 		console.log(role.permissions.toArray());
 	}
+	if (message.author.id === "234395307759108106" && message.embeds) {
+		if (message.embeds[0].title === "Now playing") {
+			const ini = message.embeds[0].description.indexOf("[");
+			const fin = message.embeds[0].description.indexOf("]");
+			currentlyPlaying = message.embeds[0].description.substr(
+				ini + 1,
+				fin - ini - 1
+			);
+			io.emit("NOWPLAYING", { sng: currentlyPlaying });
+		}
+	}
+
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();

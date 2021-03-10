@@ -40,3 +40,20 @@
 		}
 	}
 }
+
+#bot {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	span {
+		font-weight: 700;
+		color: white;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		-webkit-text-stroke: 1.5px #000000;
+		font-size: 30px;
+		#nowPlay {
+			-webkit-text-stroke: 5px #000000;
+			font-weight: 1000;
+		}
+	}
+}
