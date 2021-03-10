@@ -8,6 +8,7 @@
 	list-style-type: none;
 	display: flex;
 	flex-direction: column;
+	font-size: 40px;
 	li {
 		width: 100%;
 		display: flex;
@@ -23,7 +24,6 @@
 			word-wrap: break-word;
 			width: 20%;
 			vertical-align: middle;
-			font-size: 40px;
 			font-weight: bold;
 			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 			margin-left: 10px;

@@ -48,7 +48,7 @@ module.exports = {
 					guildID: message.guild.id,
 					userID: userFULL.id,
 				},
-				{ nameCol: "ffffff" }
+				{ nameCol: "#ffffff" }
 			);
 			message.reply("Your text color has been reset to white");
 		}

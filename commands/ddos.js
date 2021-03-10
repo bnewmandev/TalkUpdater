@@ -2,14 +2,20 @@ const Discord = require("discord.js");
 const EventEmitter = require("events");
 const events = require("events");
 const ProgressBar = require("../lib/ProgressBar");
+const isPremium = require("../lib/isPremium");
 
 module.exports = {
 	name: "ddos",
 	description: "fake ddos",
 	async execute(message, args, globalArgs) {
 		const stageOneEmitter = new events.EventEmitter();
+		try {
+			const ServerModel = globalArgs.ServerModel;
+			const premium = await isPremium(ServerModel, message);
+		} catch (error) {
+			return message.reply(error.message);
+		}
 
-		// let clap = message.guild.emojis.cache.get(":clap: ");
 		let target = [];
 		if (args.length === 0) {
 			target = ["those", "gosh", "darn", "stream", "snipers"];

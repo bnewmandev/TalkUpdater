@@ -72,6 +72,7 @@ socket.on("users", (data) => {
 
 		const name = document.createElement("p");
 		name.innerText = user.name;
+		name.className = "TEXT";
 		name.style.color = user.nameCol;
 		listItem.appendChild(name);
 
@@ -93,6 +94,15 @@ socket.on("flip", () => {
 socket.on("refresh", (data) => {
 	if (data.gid === online) {
 		window.location.reload();
+	}
+});
+
+socket.on("TEXTSIZE", (data) => {
+	const all = document.getElementsByClassName("TEXT");
+	for (let elem of all) {
+		console.log(elem);
+		elem.style.fontSize = data.toString() + "px";
+		console.log(elem.style.fontSize);
 	}
 });
 

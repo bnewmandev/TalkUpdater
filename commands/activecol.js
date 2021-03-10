@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const { createCanvas } = require("canvas");
+const { isObject } = require("util");
 
 module.exports = {
 	name: "activecol",
@@ -37,6 +38,11 @@ module.exports = {
 					{ activeCol: "#" + args[0] }
 				);
 				message.reply("Your new active colour: ", attachment);
+				globalArgs.io.emit("STYLECHANGE", [
+					"ACTIVECOL",
+					userFULL.id,
+					"#" + args[0],
+				]);
 			} else {
 				message.reply(
 					"This colour is invalid, please enter a hex colour value without the (i.e. ffffff - for white)"
@@ -48,8 +54,9 @@ module.exports = {
 					guildID: message.guild.id,
 					userID: userFULL.id,
 				},
-				{ activeCol: "ff0000" }
+				{ activeCol: "#ff0000" }
 			);
+			globalArgs.io.emit("ACTIVECOLOUR", [userFULL.id, "ff0000"]);
 			message.reply("Your active color has been reset to red");
 		}
 	},

@@ -7,6 +7,7 @@ const socket = require("socket.io");
 const events = require("events");
 const { createCanvas } = require("canvas");
 const ProgressBar = require("./lib/ProgressBar");
+const isPremium = require("./lib/isPremium");
 
 const app = express();
 
