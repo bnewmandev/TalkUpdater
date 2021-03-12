@@ -25,6 +25,12 @@ mongoose.connect(process.env.CON_STR, {
 	useFindAndModify: false,
 });
 
+app.use(
+	express.urlencoded({
+		extended: true,
+	})
+);
+
 app.use(express.static("public"));
 
 const server = app.listen(process.env.PORT, () => {
@@ -112,6 +118,38 @@ client.on("guildMemberSpeaking", (member, speaking) => {
 			guid: member.guild.id,
 		});
 	}
+});
+
+app.post("/editform", async (req, res) => {
+	const params = req.body;
+	const ID = params.GUID.split(":");
+	const userC1 = await UserModel.findOne({ guildID: ID[0], userID: ID[1] });
+	if (!userC1) {
+		return res.send("ERROR, GUID NOT VALID");
+	}
+	const userC2 = await UserModel.findOne({ refCode: params.refCode });
+	if (userC1 === userC2) {
+		return res.send("ERROR, INVALID REFERENCE CODE");
+	}
+	let imageState = 0;
+	let avatarURL;
+	if (params.customimage === "on") {
+		imageState = 2;
+	}
+	if (params.imagelink) {
+		avatarURL = params.imagelink;
+	}
+	const userUpdate = await UserModel.findOneAndUpdate(
+		{ guildID: ID[0], userID: ID[1] },
+		{
+			activeCol: params.activecol,
+			nameCol: params.namecol,
+			nickname: params.nickname || null,
+			avatarState: imageState,
+			avatarURL: avatarURL || null,
+		}
+	);
+	res.send("SUCCESS");
 });
 
 client.login(process.env.BOT_TOKEN);

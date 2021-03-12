@@ -9,6 +9,7 @@ const schema = mongoose.Schema({
 	nickname: String,
 	nameCol: String,
 	activeCol: String,
+	refCode: String,
 });
 
 module.exports = mongoose.model("UserModel", schema);

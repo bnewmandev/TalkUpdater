@@ -38,6 +38,9 @@ socket.on("users", (data) => {
 	if (data.speakOnly) {
 		speakOnly = true;
 	}
+	if (data.groovy) {
+		document.getElementById("bot").style.display = "initial";
+	}
 	const user = data.data;
 	const gid = data.gid;
 	const queryString = window.location.search;

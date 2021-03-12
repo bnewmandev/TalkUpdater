@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>WIP - Editor</title>
+	</head>
+	<body>
+		<form name="editform" id="editform" action="/editform" method="post">
+			<label for="activecol">Speaking Accent Color</label>
+			<input value="#ff0000" type="color" name="activecol" id="activecol" />
+
+			<label for="namecol">Name Color</label>
+			<input value="#ffffff" type="color" name="namecol" id="namecol" />
+
+			<label for="customimage">Use Custom Profile Picture?</label>
+			<input type="checkbox" name="customimage" id="customimage" />
+
+			<label for="imagelink">Custom Profile Picture Link</label>
+			<input
+				placeholder="https://cdn.discordapp.com/embed/avatars/0.png"
+				disabled="true"
+				type="url"
+				name="imagelink"
+				id="imagelink"
+			/>
+
+			<label for="nicknametoggle">Use Nickname?</label>
+			<input type="checkbox" name="nicknametoggle" id="nicknametoggle" />
+
+			<label for="nickname">Nickname</label>
+			<input disabled="true" id="nickname" name="nickname" type="text" />
+
+			<label for="GUID">GUID</label>
+			<input type="text" id="GUID" name="GUID" />
+
+			<label for="code">Reference Code</label>
+			<input type="text" id="code" name="code" />
+
+			<input type="submit" value="Submit" />
+		</form>
+		<script src="./edit.js"></script>
+	</body>
+</html>
