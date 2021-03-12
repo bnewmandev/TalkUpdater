@@ -138,6 +138,7 @@ app.post("/editform", async (req, res) => {
 	}
 	if (params.imagelink) {
 		avatarURL = params.imagelink;
+		imageState = 1;
 	}
 	const userUpdate = await UserModel.findOneAndUpdate(
 		{ guildID: ID[0], userID: ID[1] },
