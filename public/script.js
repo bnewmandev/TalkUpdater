@@ -96,7 +96,11 @@ socket.on("flip", () => {
 
 socket.on("groovy", () => {
 	console.log("GROOOVI");
-	document.getElementById("bot").style.display = "initial";
+	if (document.getElementById("bot").style.display === "initial") {
+		document.getElementById("bot").style.display = "none";
+	} else {
+		document.getElementById("bot").style.display = "initial";
+	}
 });
 
 socket.on("refresh", (data) => {
