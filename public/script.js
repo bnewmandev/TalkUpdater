@@ -94,6 +94,11 @@ socket.on("flip", () => {
 	}
 });
 
+socket.on("groovy", () => {
+	console.log("GROOOVI");
+	document.getElementById("bot").style.display = "initial";
+});
+
 socket.on("refresh", (data) => {
 	if (data.gid === online) {
 		window.location.reload();

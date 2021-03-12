@@ -15,7 +15,7 @@ module.exports = {
 					"'"
 			);
 		}
-		io.emit("flip", { flip: true });
-		return message.channel.send("Output has been flipped");
+		io.emit("groovy", { groovy: true });
+		return message.channel.send("GROOVI");
 	},
 };
