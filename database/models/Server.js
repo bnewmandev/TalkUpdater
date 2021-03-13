@@ -10,6 +10,10 @@ const schema = mongoose.Schema({
 	permanantCode: String,
 	avatarCircle: Boolean,
 	speakOnly: Boolean,
+	refCode: String,
+	textSize: Number,
+	nameCol: String,
+	activeCol: String,
 });
 
 module.exports = mongoose.model("ServerModel", schema);

@@ -19,7 +19,7 @@ module.exports = {
 				guildID: message.guild.id,
 				userID: userFULL.id,
 			},
-			{ enabled: true }
+			{ enabled: true, username: userFULL.tag }
 		);
 		if (user) {
 			return message.reply("Ok, I will add you to the overlay");
@@ -30,6 +30,8 @@ module.exports = {
 				enabled: true,
 				avatarState: 0,
 				avatarURL: null,
+				username: userFULL.tag,
+				forceName: null,
 			});
 			newUser.save((err) => {
 				if (err) return console.log(err);

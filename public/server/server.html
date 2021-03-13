@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>WIP - Editor</title>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<form name="editserver" id="editserver" action="/editserver" method="post">
+			<label for="circleavatar">Circular Avatar</label>
+			<input type="checkbox" name="circleavatar" id="circleavatar" />
+
+			<label for="speakonly">Display on speak only</label>
+			<input type="checkbox" name="speakonly" id="speakonly" />
+
+			<label for="textsize">Font Size</label>
+			<input type="number" name="textsize" id="textsize" value="40" />
+
+			<label for="forcetextcolor">Force Text Colour?</label>
+			<input type="checkbox" name="forcetextcolor" id="forcetextcolor" />
+
+			<label for="textcolor">Text Color</label>
+			<input disabled="true" type="color" name="textcolor" id="textcolor" />
+
+			<label for="forceaccentcolor">Force Accent Colour?</label>
+			<input type="checkbox" name="forceaccentcolor" id="forceaccentcolor" />
+
+			<label for="accentcolor">Text Color</label>
+			<input disabled="true" type="color" name="accentcolor" id="accentcolor" />
+
+			<h3>Nicknames (leave blank to allow custom)</h3>
+			<div id="userlist"></div>
+
+			<input id="submit" type="submit" value="Submit" />
+		</form>
+		<script src="./editserver.js"></script>
+	</body>
+</html>

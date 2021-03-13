@@ -35,6 +35,7 @@ socket.on("update", (msg) => {
 });
 
 socket.on("users", (data) => {
+	console.log(data);
 	if (data.speakOnly) {
 		speakOnly = true;
 	}

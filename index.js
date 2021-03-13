@@ -74,11 +74,6 @@ client.once("ready", () => {
 });
 
 client.on("message", async (message) => {
-	if (message.content === "yeetery") {
-		const role = message.guild.roles.cache.get("619209647831646259");
-
-		console.log(role.permissions.toArray());
-	}
 	if (message.author.id === "234395307759108106" && message.embeds) {
 		if (message.embeds[0].title === "Now playing") {
 			const ini = message.embeds[0].description.indexOf("[");
@@ -94,7 +89,8 @@ client.on("message", async (message) => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
-
+	if (!message.guild.me.hasPermission("ADMINISTRATOR"))
+		return message.reply("I need Administrator permissions!");
 	try {
 		client.commands.get(command).execute(message, args, globalArgs);
 	} catch (error) {
@@ -151,6 +147,81 @@ app.post("/editform", async (req, res) => {
 		}
 	);
 	res.send("SUCCESS");
+});
+
+app.get("/userlist", async (req, res) => {
+	const params = req.query;
+	const users = await UserModel.find({ guildID: params.gid });
+	let sendData = [];
+	users.forEach((elem) => {
+		const user = {
+			id: elem.userID,
+			username: elem.username,
+			nickname: elem.nickname || "Nickname Not Currently Set",
+		};
+		sendData.push(user);
+	});
+	res.json(sendData);
+});
+
+app.post("/editserver", async (req, res) => {
+	const params = req.body;
+	params.metadata = JSON.parse(params.metadata);
+	let nicknames = {};
+	for (const key in params) {
+		if (key.startsWith("%---%")) {
+			nicknames[key.substring(5)] = params[key];
+			delete params[key];
+		}
+	}
+	params["nicknames"] = nicknames;
+	const server = await ServerModel.findOne({
+		refCode: params.metadata.ref,
+		guildID: params.metadata.gid,
+	});
+	if (!server) {
+		return res.send("UNKNOWN FAILURE");
+	}
+	let cAvatar = false;
+	if (params.circleavatar === "on") {
+		cAvatar = true;
+	}
+	let tOnly = false;
+	if (params.talkonly === "on") {
+		tOnly = true;
+	}
+	const updateServer = await ServerModel.findOneAndUpdate(
+		{
+			refCode: params.metadata.ref,
+			guildID: params.metadata.gid,
+		},
+		{
+			avatarCircle: cAvatar,
+			textSize: parseInt(params.textsize),
+			speakOnly: tOnly,
+			nameCol: params.textcolor || null,
+			activeCol: params.accentcolor || null,
+		}
+	);
+	for (const key in nicknames) {
+		console.log({ userID: key, guildID: params.metadata.gid });
+		const usrUpdate = await UserModel.findOneAndUpdate(
+			{
+				userID: key,
+				guildID: params.metadata.gid,
+			},
+			{
+				forceName: nicknames[key],
+			}
+		);
+	}
+	params.msg = "SUCCESS, SERVER SETTINGS UPDATED";
+	const server2 = await ServerModel.findOne({
+		refCode: params.metadata.ref,
+		guildID: params.metadata.gid,
+	});
+	params.serverDetails = server2;
+	res.json(params);
 });
 
 client.login(process.env.BOT_TOKEN);

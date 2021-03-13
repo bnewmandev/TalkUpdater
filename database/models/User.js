@@ -10,6 +10,8 @@ const schema = mongoose.Schema({
 	nameCol: String,
 	activeCol: String,
 	refCode: String,
+	username: String,
+	forceName: String,
 });
 
 module.exports = mongoose.model("UserModel", schema);

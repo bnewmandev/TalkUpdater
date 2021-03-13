@@ -19,16 +19,16 @@ module.exports = {
 					"'"
 			);
 		}
+		let publicData = [];
 		if (message.member.voice.channel) {
 			const users = message.member.voice.channel.members;
 
-			let publicData = [];
-			users.forEach(async (elem) => {
+			const server = await ServerModel.findOne({ guildID: message.guild.id });
+			await users.forEach(async (elem) => {
 				const user = await UserModel.findOne({
 					guildID: message.guild.id,
 					userID: elem.user.id,
 				});
-				console.log(user);
 				if (!user) return;
 				if (user.enabled === false) return;
 				let avatarU = elem.user.avatarURL();
@@ -42,31 +42,44 @@ module.exports = {
 				if (user.nickname) {
 					nName = user.nickname;
 				}
+				if (user.forceName) {
+					nName = user.forceName;
+				}
 				let nCol = user.nameCol;
 				if (!user.nameCol) {
 					nCol = "#ffffff";
+				}
+				if (server.nameCol) {
+					nCol = server.nameCol;
 				}
 				let aCol = user.activeCol;
 				if (!aCol) {
 					aCol = "#ff0000";
 				}
-				publicData.push({
+				if (server.activeCol) {
+					nCol = server.activeCol;
+				}
+				const dat = {
 					avatar: avatarU,
 					name: nName,
 					id: elem.user.id,
 					nameCol: nCol,
 					activeCol: aCol,
-				});
+				};
+				let i = publicData.push(dat);
+				console.log(i);
 			});
-			const server = await ServerModel.findOne({ guildID: message.guild.id });
-			let sendData = {
-				data: publicData,
-				gid: server.permanantCode,
-				guid: server.guildID,
-				circle: server.avatarCircle,
-				speakOnly: server.speakOnly,
-			};
-			io.emit("users", sendData);
+			setTimeout(() => {
+				let sendData = {
+					data: publicData,
+					gid: server.permanantCode,
+					guid: server.guildID,
+					circle: server.avatarCircle,
+					speakOnly: server.speakOnly,
+				};
+				console.log(sendData);
+				io.emit("users", sendData);
+			}, 100);
 		} else {
 			return message.reply(
 				"Please join a voice call before using this command"
