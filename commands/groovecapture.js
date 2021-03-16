@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 
 module.exports = {
-	name: "groovy",
+	name: "groovecapture",
 	description: "currently playing",
 	async execute(message, args, globalArgs) {
 		const roleName = globalArgs.roleName;

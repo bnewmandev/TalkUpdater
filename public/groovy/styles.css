@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  width: 100%;
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 40px;
+}
+
+#main li {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  float: left;
+  margin-bottom: 10px;
+}
+
+#main li img {
+  height: 128px;
+  width: 128px;
+}
+
+#main li p {
+  text-align: left;
+  word-wrap: break-word;
+  width: 20%;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-left: 10px;
+  -webkit-text-stroke: 1.5px #000000;
+}
+
+.right #main li {
+  float: right;
+}
+
+#bot {
+  display: none;
+  position: fixed;
+  width: 100%;
+}
+
+#bot span {
+  font-weight: 700;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-text-stroke: 1.5px #000000;
+  font-size: 30px;
+}
+
+#bot span #nowPlay {
+  -webkit-text-stroke: 5px #000000;
+  font-weight: 1000;
+}
+/*# sourceMappingURL=styles.css.map */
