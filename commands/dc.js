@@ -1,7 +1,8 @@
 module.exports = {
 	name: "dc",
 	description: "disconnect from voice",
-	async execute(message, args, io, roleName) {
+	async execute(message, args, globalArgs) {
+		const roleName = globalArgs.roleName;
 		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
 		if (!l1) {
 			return message.reply(
