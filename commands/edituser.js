@@ -28,8 +28,13 @@ module.exports = {
 			},
 			{ refCode: refCode }
 		);
-		message.author.send(
-			`Please use this link to edit your settings: http://${process.env.ADDRESS}/edit/edit.html?guid=${guID}&ref=${refCode}`
-		);
+		try {
+			await message.author.send(
+				`Please use this link to edit your settings: http://${process.env.ADDRESS}/edit/edit.html?guid=${guID}&ref=${refCode}`
+			);
+			message.reply("Please check your DMs");
+		} catch (err) {
+			message.reply("You need to enable DMs for this feature to work");
+		}
 	},
 };

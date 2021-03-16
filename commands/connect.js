@@ -13,7 +13,7 @@ module.exports = {
 		if (!server) return message.reply("please rin the init command");
 
 		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
-		if (l1 === undefined) {
+		if (!l1) {
 			return message.reply(
 				"You don't have permission to perform this command, you need the role '" +
 					roleName +

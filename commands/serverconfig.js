@@ -18,7 +18,7 @@ module.exports = {
 			return message.reply("ERROR, Server not initialized");
 		}
 		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
-		if (l1 === undefined) {
+		if (!l1) {
 			return message.reply(
 				"You don't have permission to perform this command, you need the role '" +
 					roleName +
@@ -35,8 +35,13 @@ module.exports = {
 			},
 			{ refCode: refCode }
 		);
-		message.author.send(
-			`Please use this link to edit your settings: http://${process.env.ADDRESS}/server/server.html?gid=${gID}&ref=${refCode}`
-		);
+		try {
+			await message.author.send(
+				`Please use this link to edit your settings: http://${process.env.ADDRESS}/server/server.html?gid=${gID}&ref=${refCode}`
+			);
+			message.reply("Please check your DMs");
+		} catch (err) {
+			message.reply("You need to enable DMs for this feature to work");
+		}
 	},
 };

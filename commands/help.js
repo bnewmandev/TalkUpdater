@@ -4,35 +4,33 @@ module.exports = {
 	execute(message, args, globalArgs) {
 		const msg = `
 --------------------------------------------------------------------------------------------------------------------
-This bot is designed to get voice activity data from a voice channel and pipe it to a webserver.
-In practical terms this allows for a stream to add a browser source to show who is speaking.
-
-Setup:
-- run the init command (need permission to edit roles) only needs to be done once
-- give the ${globalArgs.roleName} role to anyone who you want to use the bot
-- run the connect command while in a voice channel
-- run the capture command to setup the output with all users in the voice channel
-- each user who wants to be displayed should run ${globalArgs.prefix}enableme
-
+This is a full list of all the commands avaliable for this bot, some commands need the role ${globalArgs.roleName}. Please use the \`${globalArgs.prefix}guide\` command to view the setup and usage guide
 \`\`\`
-${globalArgs.prefix}help - displays this message
-${globalArgs.prefix}source - links the source code
-${globalArgs.prefix}init - sets up permissions
-${globalArgs.prefix}connect (con) - connects bot to voice channel
-${globalArgs.prefix}disconnect (dc) - disconnects bot from channel
-${globalArgs.prefix}capture - updates connected users
-${globalArgs.prefix}flip - flips the output
-${globalArgs.prefix}refresh - refreshes the webpage (debugging)
-${globalArgs.prefix}avatar IMAGE_URL - sets avatar as image
-${globalArgs.prefix}avatar - sets avatar as discord logo
-${globalArgs.prefix}rmavatar - uses discord avatar
-${globalArgs.prefix}enableme - adds user to the overlay
-${globalArgs.prefix}disableme - removes user from the overlay (default)
-${globalArgs.prefix}nick - remove nickname
-${globalArgs.prefix}nick NICKNAME - sets nickname
-${globalArgs.prefix}avatarshape - toggles between circle and square avatar
-${globalArgs.prefix}link - show the connection link
-${globalArgs.prefix}speakonly - toggles between displaying only when speaking and always displaying
+${globalArgs.prefix}activecol ###### - sets accent color to hex code given - all users
+${globalArgs.prefix}activecol - resets the active color to red - all users
+${globalArgs.prefix}avatar IMAGE_URL - sets avatar as image - all users
+${globalArgs.prefix}avatar - sets avatar as discord logo - all users
+${globalArgs.prefix}avatarshape - toggles between circle and square avatar - ${globalArgs.roleName}
+${globalArgs.prefix}capture - synchronises data from connected and enabled users - all users
+${globalArgs.prefix}connect (con) - connects bot to current voice channel - ${globalArgs.roleName}
+${globalArgs.prefix}disableme - removes user from the active user list - all users
+${globalArgs.prefix}disconnect (dc) - disconnects bot from channel - ${globalArgs.roleName}
+${globalArgs.prefix}edituser - opens user editing page - all users
+${globalArgs.prefix}enableme - adds user to active user list - all users
+${globalArgs.prefix}flip - flips the output - ${globalArgs.roleName}
+${globalArgs.prefix}groovy - enables currently playing integration with groovy - ${globalArgs.roleName}
+${globalArgs.prefix}help - displays this message - all users
+${globalArgs.prefix}init - sets up permissions and roles for server - administrator
+${globalArgs.prefix}link - shows the connection link - all users
+${globalArgs.prefix}mydata - provides information on all data stored of the user - all users
+${globalArgs.prefix}namecol ###### - sets name color to hex code given - all users
+${globalArgs.prefix}namecol - resets the name color to white - all users
+${globalArgs.prefix}nick - remove nickname - all users
+${globalArgs.prefix}nick NICKNAME - sets nickname - all users
+${globalArgs.prefix}rmavatar - uses your discord avatar - all users
+${globalArgs.prefix}serverconfig - opens server settings page - ${globalArgs.roleName}
+${globalArgs.prefix}speakonly - toggles between displaying only when speaking and always displaying - ${globalArgs.roleName}
+${globalArgs.prefix}textsize # - sets text size to #px - ${globalArgs.roleName}
 \`\`\`
 -------------------------------------
 Author: Ben Newman
