@@ -24,8 +24,9 @@ socket.on("NOWPLAYING", (data) => {
 	const elem = document.getElementById("nowPlay");
 	let text = data.sng;
 	if (text.length >= charLim) {
-		text.substring(0, charLim);
-		text += "...";
+		t1 = text.substring(0, charLim);
+		t1 += "...";
+		text = t1;
 	}
 	elem.innerText = text;
 });
