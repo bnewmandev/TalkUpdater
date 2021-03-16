@@ -6,7 +6,7 @@ let usrCol = {};
 let charLim;
 
 socket.on("groovy", (data) => {
-	charLim = data.charLim;
+	charLim = parseInt(data.charLim);
 	if (charLim === 0) {
 		charLim = 255;
 	}
