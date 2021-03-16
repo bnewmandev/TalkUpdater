@@ -16,9 +16,10 @@ module.exports = {
 			);
 		}
 		let charLim = 20;
+		// console.log(args.length);
 		if (args.length === 1) {
 			try {
-				charLim = parseInt(charLim);
+				charLim = parseInt(args[0]);
 			} catch (error) {
 				return message.reply("Invalid character limit");
 			}
