@@ -20,6 +20,7 @@ socket.on("refresh", (data) => {
 });
 
 socket.on("NOWPLAYING", (data) => {
+	console.log(charLim);
 	const elem = document.getElementById("nowPlay");
 	let text = data.sng;
 	if (text.length >= charLim) {
