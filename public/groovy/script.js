@@ -3,14 +3,14 @@ let online = null;
 let userList = [];
 let speakOnly = false;
 let usrCol = {};
+let charLim;
 
-socket.on("groovy", () => {
-	console.log("GROOOVI");
-	if (document.getElementById("bot").style.display === "initial") {
-		document.getElementById("bot").style.display = "none";
-	} else {
-		document.getElementById("bot").style.display = "initial";
+socket.on("groovy", (data) => {
+	charLim = data.charLim;
+	if (charLim === 0) {
+		charLim = 255;
 	}
+	document.getElementById("bot").style.display = "initial";
 });
 
 socket.on("refresh", (data) => {
@@ -21,5 +21,10 @@ socket.on("refresh", (data) => {
 
 socket.on("NOWPLAYING", (data) => {
 	const elem = document.getElementById("nowPlay");
-	elem.innerText = data.sng;
+	let text = data.sng;
+	if (text >= charLim) {
+		text.substring(0, charLim);
+		text += "...";
+	}
+	elem.innerText = text;
 });

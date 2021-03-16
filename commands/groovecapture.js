@@ -15,7 +15,15 @@ module.exports = {
 					"'"
 			);
 		}
-		io.emit("groovy", { groovy: true });
+		let charLim = 20;
+		if (args.length === 1) {
+			try {
+				charlim = parseInt(charLim);
+			} catch (error) {
+				return message.reply("Invalid character limit");
+			}
+		}
+		io.emit("groovy", { charLim: charLim });
 		return message.channel.send("GROOVI");
 	},
 };
