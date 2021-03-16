@@ -18,7 +18,7 @@ module.exports = {
 		let charLim = 20;
 		if (args.length === 1) {
 			try {
-				charlim = parseInt(charLim);
+				charLim = parseInt(charLim);
 			} catch (error) {
 				return message.reply("Invalid character limit");
 			}
