@@ -95,15 +95,6 @@ socket.on("flip", () => {
 	}
 });
 
-socket.on("groovy", () => {
-	console.log("GROOOVI");
-	if (document.getElementById("bot").style.display === "initial") {
-		document.getElementById("bot").style.display = "none";
-	} else {
-		document.getElementById("bot").style.display = "initial";
-	}
-});
-
 socket.on("refresh", (data) => {
 	if (data.gid === online) {
 		window.location.reload();
@@ -117,11 +108,6 @@ socket.on("TEXTSIZE", (data) => {
 		elem.style.fontSize = data.toString() + "px";
 		console.log(elem.style.fontSize);
 	}
-});
-
-socket.on("NOWPLAYING", (data) => {
-	const elem = document.getElementById("nowPlay");
-	elem.innerText = data.sng;
 });
 
 const test = () => {
