@@ -22,7 +22,7 @@ socket.on("refresh", (data) => {
 socket.on("NOWPLAYING", (data) => {
 	const elem = document.getElementById("nowPlay");
 	let text = data.sng;
-	if (text >= charLim) {
+	if (text.length >= charLim) {
 		text.substring(0, charLim);
 		text += "...";
 	}
