@@ -24,7 +24,7 @@ module.exports = {
 			const connection = await message.member.voice.channel.join();
 			if (process.env.ADDRESS) {
 				return message.channel.send(
-					`Server live on http://${process.env.ADDRESS}/overlay/index.html?id=${server.permanantCode}`
+					`Server live on ${process.env.ADDRESS}/overlay/index.html?id=${server.permanantCode}`
 				);
 			}
 		} else {

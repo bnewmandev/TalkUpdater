@@ -6,7 +6,7 @@ module.exports = {
 	description: "gives link",
 	async execute(message, args, globalArgs) {
 		message.channel.send(
-			`Hi, Thank you for adding me to the server, please go to http://${process.env.ADDRESS}/dashboard/${message.guild.id} to view the dashboard`
+			`Hi, Thank you for adding me to the server, please go to ${process.env.ADDRESS}/dashboard/${message.guild.id} to view the dashboard`
 		);
 	},
 };

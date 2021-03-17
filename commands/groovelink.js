@@ -24,7 +24,7 @@ module.exports = {
 		if (true) {
 			if (process.env.ADDRESS) {
 				return message.channel.send(
-					`Now Playing live on on http://${process.env.ADDRESS}/groovy/index.html?id=${server.permanantCode}`
+					`Now Playing live on ${process.env.ADDRESS}/groovy/index.html?id=${server.permanantCode}`
 				);
 			}
 		} else {

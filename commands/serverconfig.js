@@ -37,7 +37,7 @@ module.exports = {
 		);
 		try {
 			await message.author.send(
-				`Please use this link to edit your settings: http://${process.env.ADDRESS}/server/server.html?gid=${gID}&ref=${refCode}`
+				`Please use this link to edit your settings: ${process.env.ADDRESS}/server/server.html?gid=${gID}&ref=${refCode}`
 			);
 			message.reply("Please check your DMs");
 		} catch (err) {

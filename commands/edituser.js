@@ -30,7 +30,7 @@ module.exports = {
 		);
 		try {
 			await message.author.send(
-				`Please use this link to edit your settings: http://${process.env.ADDRESS}/edit/edit.html?guid=${guID}&ref=${refCode}`
+				`Please use this link to edit your settings: ${process.env.ADDRESS}/edit/edit.html?guid=${guID}&ref=${refCode}`
 			);
 			message.reply("Please check your DMs");
 		} catch (err) {

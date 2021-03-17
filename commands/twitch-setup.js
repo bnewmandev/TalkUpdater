@@ -18,7 +18,7 @@ module.exports = {
 			);
 		}
 		const clientID = "p5pnijeqb5stamtxhwo71mg4ys0221";
-		const redirectUri = `http://${process.env.ADDRESS}/twitch/connect`;
+		const redirectUri = `${process.env.ADDRESS}/twitch/connect`;
 		const responseType = "code";
 		const user = await UserModel.findOne({
 			userID: message.member.user.id,

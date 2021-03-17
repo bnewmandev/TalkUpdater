@@ -8,7 +8,7 @@ module.exports = {
 		const ServerModel = globalArgs.ServerModel;
 		const server = await ServerModel.findOne({ guildID: message.guild.id });
 		message.reply(
-			`Server live on http://${process.env.ADDRESS}/overlay/index.html?id=${server.permanantCode}`
+			`Server live on ${process.env.ADDRESS}/overlay/index.html?id=${server.permanantCode}`
 		);
 	},
 };
