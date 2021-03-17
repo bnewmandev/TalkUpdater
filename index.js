@@ -10,6 +10,18 @@ const { createCanvas } = require("canvas");
 const ProgressBar = require("./lib/ProgressBar");
 const isPremium = require("./lib/isPremium");
 let currentlyPlaying = "";
+const http = require("http");
+const https = require("https");
+let privateKey;
+let certificate;
+
+require("dotenv").config();
+
+if (!process.env.DEV) {
+	privateKey = fs.readFileSync("sslcert/server.key", "utf8");
+	certificate = fs.readFileSync("sslcert/server.crt", "utf8");
+	credentials = { key: privateKey, cert: certificate };
+}
 
 const app = express();
 
@@ -17,8 +29,6 @@ const ServerModel = require("./database/models/Server");
 const UserModel = require("./database/models/User");
 
 const { prefix, roleName } = require("./config.json");
-
-require("dotenv").config();
 
 mongoose.connect(process.env.CON_STR, {
 	useNewUrlParser: true,
@@ -38,7 +48,14 @@ const server = app.listen(process.env.PORT, () => {
 	console.log("Webserver Started on port " + process.env.PORT);
 });
 
-const io = socket(server);
+let sslServer;
+
+let io = socket(server);
+
+if (!process.env.DEV) {
+	sslServer = https.createServer(credentials, app);
+	io = socket(sslServer);
+}
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -274,3 +291,9 @@ const twitch = require("./routes/twitch");
 app.use("/twitch", twitch);
 
 client.login(process.env.BOT_TOKEN);
+
+if (!process.env.DEV) {
+	sslServer.listen(443, () => {
+		console.log("HTTPS ONLINE");
+	});
+}
