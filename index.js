@@ -75,6 +75,17 @@ client.once("ready", () => {
 		.catch(console.error);
 });
 
+client.on("guildCreate", (guild) => {
+	const channel = guild.channels.cache.find(
+		(channel) =>
+			channel.type === "text" &&
+			channel.permissionsFor(guild.me).has("SEND_MESSAGES")
+	);
+	channel.send(
+		`Hi, Thank you for adding me to the server, please go to ${process.env.ADDRESS}/dashboard/${guild.id} to view the dashboard`
+	);
+});
+
 client.on("message", async (message) => {
 	if (message.author.id === "234395307759108106" && message.embeds) {
 		if (message.embeds[0].title === "Now playing") {
@@ -225,5 +236,8 @@ app.post("/editserver", async (req, res) => {
 	params.serverDetails = server2;
 	res.json(params);
 });
+
+const dashboard = require("./routes/dashboard");
+app.use("/dashboard", dashboard);
 
 client.login(process.env.BOT_TOKEN);

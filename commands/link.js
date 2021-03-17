@@ -7,6 +7,8 @@ module.exports = {
 	async execute(message, args, globalArgs) {
 		const ServerModel = globalArgs.ServerModel;
 		const server = await ServerModel.findOne({ guildID: message.guild.id });
-		message.reply(`http://${process.env.ADDRESS}/?id=${server.permanantCode}`);
+		message.reply(
+			`Server live on http://${process.env.ADDRESS}/overlay/index.html?id=${server.permanantCode}`
+		);
 	},
 };
