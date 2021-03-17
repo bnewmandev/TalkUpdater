@@ -50,6 +50,7 @@ module.exports = {
 		const stepThree = () => {
 			commands.get("capture").execute(message, args, globalArgs);
 			commands.get("groovecapture").execute(message, args, globalArgs);
+			commands.get("twitch").execute(message, args, globalArgs);
 			message.channel.send(
 				`Success!, run \`${globalArgs.prefix}reload\` to reload the overlays`
 			);

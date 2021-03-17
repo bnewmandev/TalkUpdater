@@ -14,6 +14,8 @@ const schema = mongoose.Schema({
 	textSize: Number,
 	nameCol: String,
 	activeCol: String,
+	songInfo: Object,
+	playlist: String,
 });
 
 module.exports = mongoose.model("ServerModel", schema);

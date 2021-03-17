@@ -12,6 +12,16 @@ const schema = mongoose.Schema({
 	refCode: String,
 	username: String,
 	forceName: String,
+	twitchData: {
+		state: String,
+		isValid: Boolean,
+		time: Number,
+		username: String,
+		code: String,
+		authOn: Number,
+		channels: [String],
+		token: Object,
+	},
 });
 
 module.exports = mongoose.model("UserModel", schema);

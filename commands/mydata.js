@@ -6,7 +6,13 @@ module.exports = {
 		const user = await UserModel.find({ userID: message.member.user.id });
 		try {
 			await message.author.send(
-				`\`\`\`json\n${JSON.stringify(user, null, 2)}\`\`\``
+				`\`\`\`json\n${JSON.stringify(user, null, 2)}\`\`\``,
+				{
+					split: {
+						prepend: "```json\n",
+						append: "```",
+					},
+				}
 			);
 		} catch (error) {
 			message.reply("You need to enable DMs for this feature to work");

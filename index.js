@@ -5,6 +5,7 @@ const uuid = require("uuid");
 const express = require("express");
 const socket = require("socket.io");
 const events = require("events");
+const tmi = require("tmi.js");
 const { createCanvas } = require("canvas");
 const ProgressBar = require("./lib/ProgressBar");
 const isPremium = require("./lib/isPremium");
@@ -87,15 +88,44 @@ client.on("guildCreate", (guild) => {
 });
 
 client.on("message", async (message) => {
+	if (message.content.startsWith("-play")) {
+		if (message.guild.me.voice.channel) {
+			const playlist = message.content.substring(6);
+			console.log(playlist);
+			await ServerModel.findOneAndUpdate(
+				{ guildID: message.guild.id },
+				{
+					playlist: playlist,
+				}
+			);
+		}
+	}
 	if (message.author.id === "234395307759108106" && message.embeds) {
 		if (message.embeds[0].title === "Now playing") {
 			const ini = message.embeds[0].description.indexOf("[");
 			const fin = message.embeds[0].description.indexOf("]");
+
+			const ini2 = message.embeds[0].description.indexOf("(");
+			const fin2 = message.embeds[0].description.indexOf(")");
+
+			let songURL = message.embeds[0].description.substr(
+				ini2 + 1,
+				fin2 - ini2 - 1
+			);
+
 			currentlyPlaying = message.embeds[0].description.substr(
 				ini + 1,
 				fin - ini - 1
 			);
 			io.emit("NOWPLAYING", { sng: currentlyPlaying });
+			const song = {
+				name: currentlyPlaying,
+				link: songURL,
+			};
+			await ServerModel.findOneAndUpdate(
+				{ guildID: message.guild.id },
+				{ songInfo: song }
+			);
 		}
 	}
 
@@ -239,5 +269,8 @@ app.post("/editserver", async (req, res) => {
 
 const dashboard = require("./routes/dashboard");
 app.use("/dashboard", dashboard);
+
+const twitch = require("./routes/twitch");
+app.use("/twitch", twitch);
 
 client.login(process.env.BOT_TOKEN);
