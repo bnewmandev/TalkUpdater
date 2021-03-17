@@ -20,11 +20,11 @@ require("dotenv").config();
 
 if (!process.env.DEV) {
 	const privateKey = fs.readFileSync(
-		"/etc/letsencrypt/live/discordoverlay.com/cert.pem",
+		"/etc/letsencrypt/live/discordoverlay.com/privkey.pem",
 		"utf8"
 	);
 	const certificate = fs.readFileSync(
-		"/etc/letsencrypt/live/discordoverlay.com/privkey.pem",
+		"/etc/letsencrypt/live/discordoverlay.com/cert.pem",
 		"utf8"
 	);
 	const ca = fs.readFileSync(
