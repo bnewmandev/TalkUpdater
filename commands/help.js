@@ -43,6 +43,6 @@ Please feel free to get in touch if there are any feature you would like added
 Please consider donating at https://www.paypal.me/bnewmandev
 --------------------------------------------------------------------------------------------------------------------
 		`;
-		message.channel.send(msg);
+		message.channel.send(msg, { split: true });
 	},
 };

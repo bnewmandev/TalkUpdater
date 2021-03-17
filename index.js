@@ -225,12 +225,13 @@ app.get("/userlist", async (req, res) => {
 	const users = await UserModel.find({ guildID: params.gid });
 	let sendData = [];
 	users.forEach((elem) => {
-		const user = {
+		const uID = client.users.cache.get(elem.userID);
+		const outUser = {
 			id: elem.userID,
-			username: elem.username,
+			username: uID.tag || undefined,
 			nickname: elem.nickname || "Nickname Not Currently Set",
 		};
-		sendData.push(user);
+		sendData.push(outUser);
 	});
 	res.json(sendData);
 });

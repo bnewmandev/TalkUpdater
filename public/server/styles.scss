@@ -7,11 +7,13 @@ form {
 		width: 40%;
 	}
 	div {
+		text-align: center;
+		flex-direction: column;
 		width: 40%;
 		display: flex;
 		justify-content: space-evenly;
 		input {
-			width: 50%;
+			width: 100%;
 		}
 		margin-bottom: 15px;
 	}

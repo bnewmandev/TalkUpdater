@@ -17,6 +17,11 @@ form input {
 }
 
 form div {
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 40%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28,6 +33,6 @@ form div {
 }
 
 form div input {
-  width: 50%;
+  width: 100%;
 }
 /*# sourceMappingURL=styles.css.map */

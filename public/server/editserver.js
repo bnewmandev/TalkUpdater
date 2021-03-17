@@ -35,7 +35,7 @@ const init = async () => {
 	data.forEach((e) => {
 		const label = document.createElement("label");
 		label.htmlFor = e.id;
-		label.innerHTML = e.username;
+		label.innerText = e.username;
 		elem.appendChild(label);
 
 		const input = document.createElement("input");
