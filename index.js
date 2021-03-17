@@ -14,6 +14,7 @@ const http = require("http");
 const https = require("https");
 let privateKey;
 let certificate;
+let credentials;
 
 require("dotenv").config();
 
