@@ -18,8 +18,14 @@ let certificate;
 require("dotenv").config();
 
 if (!process.env.DEV) {
-	privateKey = fs.readFileSync("sslcert/server.key", "utf8");
-	certificate = fs.readFileSync("sslcert/server.crt", "utf8");
+	privateKey = fs.readFileSync(
+		"/etc/letsencrypt/live/discordoverlay.com/fullchain.pem",
+		"utf8"
+	);
+	certificate = fs.readFileSync(
+		"/etc/letsencrypt/live/discordoverlay.com/privkey.pem",
+		"utf8"
+	);
 	credentials = { key: privateKey, cert: certificate };
 }
 
