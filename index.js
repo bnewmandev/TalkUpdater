@@ -63,6 +63,8 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
+globalArgs["commands"] = client.commands;
+
 client.once("ready", () => {
 	console.log("Ready!");
 	client.user

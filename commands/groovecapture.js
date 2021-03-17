@@ -24,6 +24,5 @@ module.exports = {
 			}
 		}
 		io.emit("groovy", { charLim: charLim });
-		return message.channel.send("GROOVI");
 	},
 };
