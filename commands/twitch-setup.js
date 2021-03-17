@@ -29,7 +29,7 @@ module.exports = {
 			const scope =
 				"openid%20chat:read%20chat:edit%20channel:moderate%20whispers:read%20whispers:edit%20channel_editor";
 			message.author.send(
-				`https://id.twitch.tv/oauth2/authorize?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&state=${state}`
+				`https://id.twitch.tv/oauth2/authorize?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&state=${state}&force_verify=true`
 			);
 			const now = Date.now();
 			const u1 = await UserModel.findOneAndUpdate(
