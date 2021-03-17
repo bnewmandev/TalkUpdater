@@ -19,7 +19,7 @@ require("dotenv").config();
 
 if (!process.env.DEV) {
 	privateKey = fs.readFileSync(
-		"/etc/letsencrypt/live/discordoverlay.com/fullchain.pem",
+		"/etc/letsencrypt/live/discordoverlay.com/cert.pem",
 		"utf8"
 	);
 	certificate = fs.readFileSync(
