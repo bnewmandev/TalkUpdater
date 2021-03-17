@@ -225,10 +225,9 @@ app.get("/userlist", async (req, res) => {
 	const users = await UserModel.find({ guildID: params.gid });
 	let sendData = [];
 	users.forEach((elem) => {
-		const uID = client.users.cache.get(elem.userID);
 		const outUser = {
 			id: elem.userID,
-			username: uID.tag || undefined,
+			username: elem.username || undefined,
 			nickname: elem.nickname || "Nickname Not Currently Set",
 		};
 		sendData.push(outUser);
@@ -276,7 +275,6 @@ app.post("/editserver", async (req, res) => {
 		}
 	);
 	for (const key in nicknames) {
-		console.log({ userID: key, guildID: params.metadata.gid });
 		const usrUpdate = await UserModel.findOneAndUpdate(
 			{
 				userID: key,

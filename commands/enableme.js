@@ -22,6 +22,15 @@ module.exports = {
 			{ enabled: true, username: userFULL.tag }
 		);
 		if (user) {
+			await UserModel.findOneAndUpdate({
+				userID: userFULL.id,
+				guildID: message.guild.id,
+				enabled: true,
+				avatarState: 0,
+				avatarURL: null,
+				username: userFULL.tag,
+				forceName: null,
+			});
 			return message.reply("Ok, I will add you to the overlay");
 		} else {
 			const newUser = await new UserModel({
