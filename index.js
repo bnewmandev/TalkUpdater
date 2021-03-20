@@ -117,7 +117,7 @@ globalArgs["commands"] = client.commands;
 client.once("ready", () => {
 	console.log("Ready!");
 	client.user
-		.setActivity(`${prefix}help || pogging`, { type: "LISTENING" })
+		.setActivity(`${prefix}guide || pogging`, { type: "LISTENING" })
 		.then((presence) =>
 			console.log(`Activity set to ${presence.activities[0].name}`)
 		)
