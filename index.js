@@ -153,13 +153,9 @@ client.on("message", async (message) => {
 			const ini = message.embeds[0].description.indexOf("[");
 			const fin = message.embeds[0].description.indexOf("]");
 
-			const ini2 = message.embeds[0].description.indexOf("(");
-			const fin2 = message.embeds[0].description.indexOf(")");
+			const urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g;
 
-			let songURL = message.embeds[0].description.substr(
-				ini2 + 1,
-				fin2 - ini2 - 1
-			);
+			let songURL = message.embeds[0].description.match(urlRegex);
 
 			currentlyPlaying = message.embeds[0].description.substr(
 				ini + 1,
@@ -168,7 +164,7 @@ client.on("message", async (message) => {
 			io.emit("NOWPLAYING", { sng: currentlyPlaying });
 			const song = {
 				name: currentlyPlaying,
-				link: songURL,
+				link: songURL[0] || "ERROR LINK NOT FOUND",
 			};
 			await ServerModel.findOneAndUpdate(
 				{ guildID: message.guild.id },
