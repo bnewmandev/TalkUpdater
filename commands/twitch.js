@@ -86,11 +86,7 @@ module.exports = {
 					}
 					await client.say(
 						target,
-						`@${context.username} Song: ${server.songInfo.name}`
-					);
-					await client.say(
-						target,
-						`@${context.username} Link: ${server.songInfo.link}`
+						`@${context.username} Song: ${server.songInfo.name}, ${server.songInfo.link}`
 					);
 					break;
 				case "!playlist":
