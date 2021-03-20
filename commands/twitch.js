@@ -85,10 +85,11 @@ module.exports = {
 						);
 						break;
 					}
-					client.say(
+					const a1 = await client.say(
 						target,
 						`@${context.username} Song: ${server.songInfo.name}, ${server.songInfo.link}`
 					);
+					console.log(a1);
 					break;
 				case "!playlist":
 					if (!server.playlist) {
