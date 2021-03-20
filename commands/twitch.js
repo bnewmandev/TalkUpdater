@@ -79,16 +79,25 @@ module.exports = {
 			switch (commandName) {
 				case "!song":
 					if (!server.songInfo) {
-						return client.say(target, "No Song is currently playing");
+						return client.say(
+							target,
+							`@${tags.username} No Song is currently playing`
+						);
 					}
-					client.say(target, `Song: ${server.songInfo.name}`);
-					client.say(target, `Link: ${server.songInfo.link}`);
+					await client.say(
+						target,
+						`@${tags.username} Song: ${server.songInfo.name}`
+					);
+					await client.say(
+						target,
+						`@${tags.username} Link: ${server.songInfo.link}`
+					);
 					break;
 				case "!playlist":
 					if (!server.playlist) {
 						client.say(target, "There is no queued playlist");
 					}
-					client.say(target, `Playlist: ${server.playlist}`);
+					await client.say(target, `Playlist: ${server.playlist}`);
 				default:
 					break;
 			}
