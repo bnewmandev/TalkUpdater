@@ -18,7 +18,8 @@ ${globalArgs.prefix}disconnect (dc) - disconnects bot from channel - ${globalArg
 ${globalArgs.prefix}edituser - opens user editing page - all users
 ${globalArgs.prefix}enableme - adds user to active user list - all users
 ${globalArgs.prefix}flip - flips the output - ${globalArgs.roleName}
-${globalArgs.prefix}groovy - enables currently playing integration with groovy - ${globalArgs.roleName}
+${globalArgs.prefix}glink - enables currently playing integration with groovy - ${globalArgs.roleName}
+${globalArgs.prefix}gcap - synchronises groovy info - ${globalArgs.roleName}
 ${globalArgs.prefix}help - displays this message - all users
 ${globalArgs.prefix}init - sets up permissions and roles for server - administrator
 ${globalArgs.prefix}link - shows the connection link - all users
@@ -31,6 +32,8 @@ ${globalArgs.prefix}rmavatar - uses your discord avatar - all users
 ${globalArgs.prefix}serverconfig - opens server settings page - ${globalArgs.roleName}
 ${globalArgs.prefix}speakonly - toggles between displaying only when speaking and always displaying - ${globalArgs.roleName}
 ${globalArgs.prefix}textsize # - sets text size to #px - ${globalArgs.roleName}
+${globalArgs.prefix}twitch-setup - links twitch account to discord user ${globalArgs.roleName}
+${globalArgs.prefix}twitch - starts listening to song data and enables twitch commands !song and !playlist
 \`\`\`
 -------------------------------------
 Author: Ben Newman
