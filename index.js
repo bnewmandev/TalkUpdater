@@ -164,7 +164,7 @@ client.on("message", async (message) => {
 			io.emit("NOWPLAYING", { sng: currentlyPlaying });
 			const song = {
 				name: currentlyPlaying,
-				link: songURL[0] || "ERROR LINK NOT FOUND",
+				link: songURL[0].slice(0, -1) || "ERROR LINK NOT FOUND",
 			};
 			await ServerModel.findOneAndUpdate(
 				{ guildID: message.guild.id },
