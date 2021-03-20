@@ -8,7 +8,6 @@ module.exports = {
 	async execute(message, args, globalArgs) {
 		const UserModel = globalArgs.UserModel;
 		const roleName = globalArgs.roleName;
-		const io = globalArgs.io;
 		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
 		if (!l1) {
 			return message.reply(

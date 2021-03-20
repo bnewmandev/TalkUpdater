@@ -10,10 +10,12 @@ module.exports = {
 	name: "twitch",
 	description: "twitch integration",
 	async execute(message, args, globalArgs) {
+		// Imports from globalArgs
 		const UserModel = globalArgs.UserModel;
 		const ServerModel = globalArgs.ServerModel;
 		const roleName = globalArgs.roleName;
-		const io = globalArgs.io;
+
+		// Checking for permissions
 		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
 		if (!l1) {
 			return message.reply(
@@ -22,22 +24,33 @@ module.exports = {
 					"'"
 			);
 		}
+
+		// Checking for connection to voice channel
 		let vc = message.guild.me.voice.channel;
 		let vc2 = message.member.voice.channel;
 		if (!vc2) return message.reply("Plese join a voice channel");
 		if (!vc) return message.reply("Please connect me to a voice channel");
+
 		const user = await UserModel.findOne({
 			userID: message.member.user.id,
 			guildID: message.guild.id,
 		});
+
+		if (!user) {
+			return message.reply("Your account has not been enabled");
+		}
 
 		if (!user.twitchData.code) {
 			return message.reply("Your twitch account is not connected");
 		}
 		const opts = {
 			identity: {
-				username: user.twitchData.token.info["preferred_username"],
-				password: user.twitchData.token.token["access_token"],
+				username: process.env.TTVBOTUSR,
+				password: process.env.TTVTOKEN,
+			},
+			connection: {
+				secure: true,
+				reconnect: true,
 			},
 			channels: [user.twitchData.token.info["preferred_username"]],
 		};
@@ -53,10 +66,16 @@ module.exports = {
 			const server = await ServerModel.findOne({ guildID: message.guild.id });
 			switch (commandName) {
 				case "!song":
+					if (!server.songInfo) {
+						return client.say(target, "No Song is currently playing");
+					}
 					client.say(target, `Song: ${server.songInfo.name}`);
 					client.say(target, `Link: ${server.songInfo.link}`);
 					break;
 				case "!playlist":
+					if (!server.playlist) {
+						client.say(target, "There is no queued playlist");
+					}
 					client.say(target, `Playlist: ${server.playlist}`);
 				default:
 					break;

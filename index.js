@@ -9,6 +9,7 @@ const tmi = require("tmi.js");
 const { createCanvas } = require("canvas");
 const ProgressBar = require("./lib/ProgressBar");
 const isPremium = require("./lib/isPremium");
+const winston = require("winston");
 let currentlyPlaying = "";
 const http = require("http");
 const https = require("https");
@@ -16,8 +17,25 @@ let privateKey;
 let certificate;
 let credentials;
 
+const logger = winston.createLogger({
+	level: "debug",
+	format: winston.format.json(),
+	defaultMeta: { servive: "user-service" },
+	transports: [
+		new winston.transports.File({ filename: "error.log", level: "error" }),
+		new winston.transports.File({ filename: "combined.log" }),
+	],
+});
+
+logger.add(
+	new winston.transports.Console({
+		format: winston.format.simple(),
+	})
+);
+
 require("dotenv").config();
 
+// Use HTTPS on production server
 if (!process.env.DEV) {
 	const privateKey = fs.readFileSync(
 		"/etc/letsencrypt/live/discordoverlay.com/privkey.pem",
@@ -41,6 +59,7 @@ const UserModel = require("./database/models/User");
 
 const { prefix, roleName } = require("./config.json");
 
+// Connect to DB
 mongoose.connect(process.env.CON_STR, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -53,6 +72,7 @@ app.use(
 	})
 );
 
+// Serve HTML files
 app.use(express.static("public"));
 
 const server = app.listen(process.env.PORT, () => {
@@ -111,7 +131,7 @@ client.on("guildCreate", (guild) => {
 			channel.permissionsFor(guild.me).has("SEND_MESSAGES")
 	);
 	channel.send(
-		`Hi, Thank you for adding me to the server, please go to ${process.env.ADDRESS}/dashboard/${guild.id} to view the dashboard`
+		`Hi, Thank you for adding me to the server, please go to https://www.discordoverlay.com for usage guide`
 	);
 });
 
@@ -168,6 +188,7 @@ client.on("message", async (message) => {
 		message.reply("This command does not exist or was used incorrectly");
 	}
 });
+
 client.on("guildMemberSpeaking", (member, speaking) => {
 	if (member.user.bot) return;
 	if (speaking.bitfield) {
@@ -185,6 +206,10 @@ client.on("guildMemberSpeaking", (member, speaking) => {
 			guid: member.guild.id,
 		});
 	}
+});
+
+client.on("disconnect", (message) => {
+	console.log(message);
 });
 
 app.post("/editform", async (req, res) => {
