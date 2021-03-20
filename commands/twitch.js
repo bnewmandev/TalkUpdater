@@ -81,16 +81,16 @@ module.exports = {
 					if (!server.songInfo) {
 						return client.say(
 							target,
-							`@${tags.username} No Song is currently playing`
+							`@${context.username} No Song is currently playing`
 						);
 					}
 					await client.say(
 						target,
-						`@${tags.username} Song: ${server.songInfo.name}`
+						`@${context.username} Song: ${server.songInfo.name}`
 					);
 					await client.say(
 						target,
-						`@${tags.username} Link: ${server.songInfo.link}`
+						`@${context.username} Link: ${server.songInfo.link}`
 					);
 					break;
 				case "!playlist":
