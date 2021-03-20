@@ -10,6 +10,15 @@ module.exports = {
 					"'"
 			);
 		}
+		const serverU = await ServerModel.findOneAndUpdate(
+			{
+				guildID: message.guild.id,
+			},
+			{
+				songInfo: null,
+				playlist: undefined,
+			}
+		);
 		const connection = await message.member.voice.channel.join();
 		connection.disconnect();
 	},
