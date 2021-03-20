@@ -57,6 +57,18 @@ module.exports = {
 		const client = new tmi.client(opts);
 		client.on("connected", (e) => {
 			console.log(e);
+			message.channel.send(
+				"Successfully Synchronised with " +
+					user.twitchData.token.info["preferred_username"] +
+					"'s twitch stream"
+			);
+		});
+
+		client.on("disconnected", () => {
+			message.channel.send(
+				user.twitchData.token.info["preferred_username"] +
+					"'s bot has disconnected"
+			);
 		});
 		client.connect();
 
