@@ -5,7 +5,7 @@ module.exports = {
 		const msg = `
 --------------------------------------------------------------------------------------------------------------------
 This is a full list of all the commands avaliable for this bot, some commands need the role ${globalArgs.roleName}. Please use the \`${globalArgs.prefix}guide\` command to view the setup and usage guide
-\`\`\`
+
 ${globalArgs.prefix}activecol ###### - sets accent color to hex code given - all users
 ${globalArgs.prefix}activecol - resets the active color to red - all users
 ${globalArgs.prefix}avatar IMAGE_URL - sets avatar as image - all users
@@ -34,7 +34,7 @@ ${globalArgs.prefix}speakonly - toggles between displaying only when speaking an
 ${globalArgs.prefix}textsize # - sets text size to #px - ${globalArgs.roleName}
 ${globalArgs.prefix}twitch-setup - links twitch account to discord user ${globalArgs.roleName}
 ${globalArgs.prefix}twitch - starts listening to song data and enables twitch commands !song and !playlist
-\`\`\`
+
 -------------------------------------
 Author: Ben Newman
 Website: www.bnewman.dev

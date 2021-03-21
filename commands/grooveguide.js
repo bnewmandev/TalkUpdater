@@ -1,5 +1,5 @@
 module.exports = {
-	name: "guide",
+	name: "gguide",
 	description: "displays guide",
 	execute(message, args, globalArgs) {
 		const msg = `

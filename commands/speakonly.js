@@ -5,7 +5,7 @@ module.exports = {
 	name: "speakonly",
 	description: "speak only",
 	async execute(message, args, globalArgs) {
-		const roleName = globalArgs.globalArgs;
+		const roleName = globalArgs.roleName;
 		const ServerModel = globalArgs.ServerModel;
 
 		let l1 = message.member.roles.cache.some((role) => role.name === roleName);
